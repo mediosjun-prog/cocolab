@@ -1,4 +1,4 @@
-import { Metadata } from 'node_modules/next'; // または 'next'
+import { Metadata } from 'next';
 import AboutUsContent from './AboutUsContent';
 
 export const metadata: Metadata = {

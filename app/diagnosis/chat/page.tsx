@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { AI_PERSONAS, Persona } from '../../../lib/aiPersonas';
 
@@ -10,7 +10,8 @@ interface Message {
   text: string;
 }
 
-export default function GeminiChatSessionPage() {
+// 実際のチャット画面の中身（useSearchParamsを使う部分）
+function ChatContent() {
   const searchParams = useSearchParams();
   const type = searchParams.get('type') || 'fearful';
   const persona: Persona = AI_PERSONAS[type] || AI_PERSONAS.fearful;
@@ -52,129 +53,127 @@ export default function GeminiChatSessionPage() {
     ]);
   }, [persona]);
 
-  // ★ VOICEVOX再生を試み、失敗時はブラウザ標準音声にフォールバックする関数
-const speakText = (text: string) => {
-  if (!isVoiceOutputEnabled) return;
+  // VOICEVOX再生を試み、失敗時はブラウザ標準音声にフォールバックする関数
+  const speakText = (text: string) => {
+    if (!isVoiceOutputEnabled) return;
 
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 3000); // 3秒でタイムアウト
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
 
-  fetch('/api/voicevox', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      text: text,
-      speaker: persona.voicevoxSpeaker ?? 3,
-    }),
-    signal: controller.signal,
-  })
-    .then(async (ttsRes) => {
-      clearTimeout(timeoutId);
-      if (ttsRes.ok) {
-        const audioBlob = await ttsRes.blob();
-        const audioUrl = URL.createObjectURL(audioBlob);
-        const audio = new Audio(audioUrl);
-        audio.play();
-      } else {
-        throw new Error('VOICEVOX API error');
-      }
-    })
-    .catch((err) => {
-      clearTimeout(timeoutId);
-      const reason =
-        err.name === 'AbortError'
-          ? 'タイムアウトしました'
-          : err.message ?? '不明なエラー';
-      console.warn(`VOICEVOXの利用に失敗したため(${reason})、ブラウザ標準音声に切り替えます:`, err);
-
-      // ブラウザ標準の音声合成（SpeechSynthesis）で代替再生
-      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'ja-JP';
-        utterance.rate = 1.0;
-        utterance.pitch = 1.0;
-        window.speechSynthesis.speak(utterance);
-      }
-    });
-};
-
-  // メッセージ送信処理の定義（音声認識からも呼び出せるようにする）
-  const handleSend = async (textToSend: string) => {
-  const trimmed = textToSend.trim();
-  if (!trimmed || isThinkingRef.current || isProcessingRef.current) return;
-
-  const userMsg: Message = {
-    id: Date.now().toString(),
-    sender: 'user',
-    text: trimmed,
-  };
-
-  const newMessages = [...messages, userMsg];
-  setMessages(newMessages);
-  setInputText('');
-  setIsThinking(true);
-
-  try {
-    const res = await fetch('/api/session', {
+    fetch('/api/voicevox', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        messages: newMessages,
-        systemPrompt: persona.systemPrompt,
+        text: text,
+        speaker: persona.voicevoxSpeaker ?? 3,
       }),
-    });
+      signal: controller.signal,
+    })
+      .then(async (ttsRes) => {
+        clearTimeout(timeoutId);
+        if (ttsRes.ok) {
+          const audioBlob = await ttsRes.blob();
+          const audioUrl = URL.createObjectURL(audioBlob);
+          const audio = new Audio(audioUrl);
+          audio.play();
+        } else {
+          throw new Error('VOICEVOX API error');
+        }
+      })
+      .catch((err) => {
+        clearTimeout(timeoutId);
+        const reason =
+          err.name === 'AbortError'
+            ? 'タイムアウトしました'
+            : err.message ?? '不明なエラー';
+        console.warn(`VOICEVOXの利用に失敗したため(${reason})、ブラウザ標準音声に切り替えます:`, err);
 
-    const data = await res.json();
+        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = 'ja-JP';
+          utterance.rate = 1.0;
+          utterance.pitch = 1.0;
+          window.speechSynthesis.speak(utterance);
+        }
+      });
+  };
 
-    if (!res.ok) {
-      // ステータス・コードに応じてメッセージを出し分ける
-      const text =
-        data.code === 'DAILY_QUOTA_EXCEEDED'
-          ? '本日のAI利用回数の上限に達しました。しばらくしてから、または翌日以降にお試しください🙏'
-          : data.code === 'RATE_LIMITED'
-          ? '現在アクセスが集中しています。少し時間をおいて再度お試しください。'
-          : data.error || 'エラーが発生しました。もう一度お試しください。';
+  // メッセージ送信処理の定義
+  const handleSend = async (textToSend: string) => {
+    const trimmed = textToSend.trim();
+    if (!trimmed || isThinkingRef.current || isProcessingRef.current) return;
 
+    const userMsg: Message = {
+      id: Date.now().toString(),
+      sender: 'user',
+      text: trimmed,
+    };
+
+    const newMessages = [...messages, userMsg];
+    setMessages(newMessages);
+    setInputText('');
+    setIsThinking(true);
+
+    try {
+      const res = await fetch('/api/session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: newMessages,
+          systemPrompt: persona.systemPrompt,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        const text =
+          data.code === 'DAILY_QUOTA_EXCEEDED'
+            ? '本日のAI利用回数の上限に達しました。しばらくしてから、または翌日以降にお試しください🙏'
+            : data.code === 'RATE_LIMITED'
+            ? '現在アクセスが集中しています。少し時間をおいて再度お試しください。'
+            : data.error || 'エラーが発生しました。もう一度お試しください。';
+
+        const errMsg: Message = {
+          id: (Date.now() + 1).toString(),
+          sender: 'ai',
+          text,
+        };
+        setMessages((prev) => [...prev, errMsg]);
+        return;
+      }
+
+      const aiMsg: Message = {
+        id: (Date.now() + 1).toString(),
+        sender: 'ai',
+        text: data.text,
+      };
+      setMessages((prev) => [...prev, aiMsg]);
+
+      if (isVoiceOutputEnabled) {
+        speakText(data.text);
+      }
+
+    } catch (error) {
+      console.error(error);
       const errMsg: Message = {
         id: (Date.now() + 1).toString(),
         sender: 'ai',
-        text,
+        text: '通信エラーが発生しました。ネットワーク状況を確認して、もう一度お試しください。',
       };
       setMessages((prev) => [...prev, errMsg]);
-      return;
+    } finally {
+      setIsThinking(false);
     }
+  };
 
-    const aiMsg: Message = {
-      id: (Date.now() + 1).toString(),
-      sender: 'ai',
-      text: data.text,
-    };
-    setMessages((prev) => [...prev, aiMsg]);
-
-    if (isVoiceOutputEnabled) {
-      speakText(data.text);
-    }
-
-  } catch (error) {
-    console.error(error);
-    const errMsg: Message = {
-      id: (Date.now() + 1).toString(),
-      sender: 'ai',
-      text: '通信エラーが発生しました。ネットワーク状況を確認して、もう一度お試しください。',
-    };
-    setMessages((prev) => [...prev, errMsg]);
-  } finally {
-    setIsThinking(false);
-  }
-};
-
-  // ★ Web Speech API（音声認識）の初期化
+  // Web Speech API（音声認識）の初期化
   useEffect(() => {
-    const SpeechRecognition = window.SpeechRecognition || (window as any).webkitSpeechRecognition;
-    if (!SpeechRecognition) return;
+    const SpeechRecognitionAPI = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SpeechRecognitionAPI) return;
 
-    const recognition = new SpeechRecognition();
+    const recognition = new SpeechRecognitionAPI();
     recognition.lang = 'ja-JP';
     recognition.interimResults = false;
 
@@ -184,8 +183,6 @@ const speakText = (text: string) => {
       const transcript = event.results[0][0].transcript;
       setInputText(transcript);
       setIsListening(false);
-
-      // 音声認識で取得したテキストをそのまま自動送信する
       handleSend(transcript);
     };
 
@@ -195,7 +192,6 @@ const speakText = (text: string) => {
         setIsListening(false);
         return;
       }
-
       console.error('Speech recognition error:', event.error);
       setIsListening(false);
     };
@@ -203,7 +199,7 @@ const speakText = (text: string) => {
     recognition.onend = () => {
       setIsListening(false);
     };
-  }, [messages]); // messagesの更新をキャッチできるように調整
+  }, [messages]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -213,7 +209,6 @@ const speakText = (text: string) => {
     scrollToBottom();
   }, [messages, isThinking]);
 
-  // 音声入力のトグル
   const toggleListening = () => {
     if (!recognitionRef.current) {
       alert('お使いのブラウザは音声認識に対応していません。（Chrome/Safari推奨）');
@@ -234,7 +229,6 @@ const speakText = (text: string) => {
     }
   };
 
-  // 音声出力ON/OFF
   const toggleVoiceOutput = () => {
     setIsVoiceOutputEnabled(!isVoiceOutputEnabled);
   };
@@ -265,7 +259,6 @@ const speakText = (text: string) => {
             </div>
           </div>
 
-          {/* 音声ON/OFF ボタン */}
           <button
             onClick={toggleVoiceOutput}
             className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
@@ -387,5 +380,14 @@ const speakText = (text: string) => {
         </div>
       </div>
     </main>
+  );
+}
+
+// ページコンポーネント（Suspenseでラップする）
+export default function GeminiChatSessionPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#8cabd9] flex items-center justify-center text-white">読み込み中...</div>}>
+      <ChatContent />
+    </Suspense>
   );
 }
