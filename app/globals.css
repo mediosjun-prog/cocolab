@@ -1,26 +1,39 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* 全ページのリンクスタイル（やわらかいグリーン調） */
+a {
+  color: #475569; /* slate-600: やさしいダークグレー（通常時） */
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ホバー時の色（グリーン系アクセント） */
+a:hover {
+  color: #93c296; /* メインカラーと同系統のパステルグリーン */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* 訪問済みリンクの色が紫や青に戻るのを防止 */
+a:visited {
+  color: #475569;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* 青いフォーカス枠線を消し、上品にカラー変更 */
+a:focus,
+a:focus-visible {
+  outline: none;
+  color: #93c296;
+}
+
+/* app/globals.css */
+main {
+ background-image: 
+    linear-gradient(rgba(253, 250, 243, 0.5), rgba(253, 250, 243, 0.5)),
+    url('/images/bg-pattern.png');
+  background-repeat: repeat-x;        /* 縦方向にリピートして下まで敷き詰める */
+  background-size: 100% auto;          /* 横幅を画面100%に固定し、縦は自動調整 */
+  background-position: top center;     /* 上中央から配置 */
+  background-color: #ffffff;          /* ベース背景色 */
+
+  min-height: 100vh;
+  margin: 0;
 }
