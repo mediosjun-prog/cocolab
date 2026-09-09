@@ -41,7 +41,7 @@ export async function POST(req: Request) {
     });
 
     // textを関数ではなくプロパティ（またはresponse.textの値）として安全に取得
-    const text = typeof response.text === 'function' ? response.text() : (response.text || '');
+    const text = response.text || '';
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     const jsonString = jsonMatch ? jsonMatch[0] : text;
     const data = JSON.parse(jsonString);
