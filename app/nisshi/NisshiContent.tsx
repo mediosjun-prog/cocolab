@@ -199,7 +199,7 @@ export default function NisshiContent({
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-xl shadow-md transition-all disabled:opacity-50 cursor-pointer"
+          className="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 !text-white font-medium rounded-xl shadow-md transition-all disabled:opacity-50 cursor-pointer"
         >
           {loading ? 'AIがメッセージを考えています...' : 'きょうの日誌を記録してAIに相談する'}
         </button>

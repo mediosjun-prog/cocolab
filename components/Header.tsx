@@ -94,6 +94,12 @@ export default function Header() {
                 ここいく
               </Link>
               <Link
+                href="/kokoroom"
+                className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+              >
+                ここるーむ
+              </Link>
+              <Link
                 href="/nisshi"
                 className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
               >
@@ -223,6 +229,13 @@ export default function Header() {
                   className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
                 >
                   ここいく
+                </Link>
+                  <Link
+                  href="/kokoroom"
+                  onClick={() => setIsOpen(false)}
+                  className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここるーむ
                 </Link>
                 <Link
                   href="/nisshi"
