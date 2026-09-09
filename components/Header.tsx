@@ -1,18 +1,39 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  // スマホ用のアコーディオン（開閉）状態
+  
+  // PC用プルダウンの開閉ステート
+  const [pcConsultOpen, setPcConsultOpen] = useState(false);
+  const [pcRecoveryOpen, setPcRecoveryOpen] = useState(false);
+
+  // スマホ用のアコーディオン状態
   const [mobileConsultOpen, setMobileConsultOpen] = useState(false);
   const [mobileRecoveryOpen, setMobileRecoveryOpen] = useState(false);
 
+  // 外側をクリックしたらPC用プルダウンを閉じるための参照
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setPcConsultOpen(false);
+        setPcRecoveryOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
-      <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between" ref={dropdownRef}>
         
         {/* ロゴエリア */}
         <Link href="/" className="flex items-center gap-2">
@@ -26,7 +47,7 @@ export default function Header() {
           />
         </Link>
 
-        {/* PC用ナビゲーション（md以上で表示） */}
+        {/* PC・タブレット用ナビゲーション（md以上で表示） */}
         <nav className="hidden md:flex items-center gap-5 lg:gap-6">
           <Link
             href="/about"
@@ -42,76 +63,100 @@ export default function Header() {
             診断
           </Link>
 
-          {/* PC用「相談」プルダウン */}
-          <div className="relative group">
-            <button className="flex items-center gap-1 text-sm font-medium text-slate-600 group-hover:text-[#5d8860] py-2 transition-colors cursor-pointer">
+          {/* PC用「相談」プルダウン（クリック対応） */}
+          <div className="relative">
+            <button
+              onClick={() => {
+                setPcConsultOpen(!pcConsultOpen);
+                setPcRecoveryOpen(false);
+              }}
+              className="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-[#5d8860] py-2 transition-colors cursor-pointer"
+            >
               <span>相談</span>
-              <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className={`w-4 h-4 transition-transform ${pcConsultOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            <div className="absolute top-full left-0 w-44 bg-white rounded-2xl shadow-lg border border-slate-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 space-y-1 z-50">
-              <Link
-                href="/counselors"
-                className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
-              >
-                AI相談
-              </Link>
-              <Link
-                href="/experts"
-                className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
-              >
-                専門家相談
-              </Link>
-            </div>
+            {pcConsultOpen && (
+              <div className="absolute top-full left-0 w-44 bg-white rounded-2xl shadow-lg border border-slate-100 py-2 space-y-1 z-50">
+                <Link
+                  href="/counselors"
+                  onClick={() => setPcConsultOpen(false)}
+                  className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  AI相談
+                </Link>
+                <Link
+                  href="/experts"
+                  onClick={() => setPcConsultOpen(false)}
+                  className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  専門家相談
+                </Link>
+              </div>
+            )}
           </div>
 
-          {/* PC用「回復」プルダウン */}
-          <div className="relative group">
-            <button className="flex items-center gap-1 text-sm font-medium text-slate-600 group-hover:text-[#5d8860] py-2 transition-colors cursor-pointer">
+          {/* PC用「回復」プルダウン（クリック対応） */}
+          <div className="relative">
+            <button
+              onClick={() => {
+                setPcRecoveryOpen(!pcRecoveryOpen);
+                setPcConsultOpen(false);
+              }}
+              className="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-[#5d8860] py-2 transition-colors cursor-pointer"
+            >
               <span>回復</span>
-              <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className={`w-4 h-4 transition-transform ${pcRecoveryOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            <div className="absolute top-full left-0 w-48 bg-white rounded-2xl shadow-lg border border-slate-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 space-y-1 z-50">
-              <Link
-                href="/kokomusubi"
-                className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
-              >
-                ここむすび
-              </Link>
-              <Link
-                href="/kokokako"
-                className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
-              >
-                ここかこ
-              </Link>
-              <Link
-                href="/iko"
-                className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
-              >
-                ここいく
-              </Link>
-              <Link
-                href="/kokoroom"
-                className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
-              >
-                ここるーむ
-              </Link>
-              <Link
-                href="/nisshi"
-                className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
-              >
-                ここにっし
-              </Link>
-              <Link
-                href="/kokocheck"
-                className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
-              >
-                ここチェック
-              </Link>
-            </div>
+            {pcRecoveryOpen && (
+              <div className="absolute top-full left-0 w-48 bg-white rounded-2xl shadow-lg border border-slate-100 py-2 space-y-1 z-50">
+                <Link
+                  href="/kokomusubi"
+                  onClick={() => setPcRecoveryOpen(false)}
+                  className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここむすび
+                </Link>
+                <Link
+                  href="/kokokako"
+                  onClick={() => setPcRecoveryOpen(false)}
+                  className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここかこ
+                </Link>
+                <Link
+                  href="/iko"
+                  onClick={() => setPcRecoveryOpen(false)}
+                  className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここいく
+                </Link>
+                <Link
+                  href="/kokoroom"
+                  onClick={() => setPcRecoveryOpen(false)}
+                  className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここるーむ
+                </Link>
+                <Link
+                  href="/nisshi"
+                  onClick={() => setPcRecoveryOpen(false)}
+                  className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここにっし
+                </Link>
+                <Link
+                  href="/kokocheck"
+                  onClick={() => setPcRecoveryOpen(false)}
+                  className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここチェック
+                </Link>
+              </div>
+            )}
           </div>
 
           <Link
@@ -148,7 +193,7 @@ export default function Header() {
 
       {/* スマホ用ドロップダウンメニュー（開閉時） */}
       {isOpen && (
-        <div className="md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-6 space-y-2 animate-fadeIn max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div className="md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-6 space-y-2 max-h-[calc(100vh-4rem)] overflow-y-auto">
           <Link
             href="/about"
             onClick={() => setIsOpen(false)}
@@ -212,7 +257,7 @@ export default function Header() {
                 <Link
                   href="/kokomusubi"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between py-2 px-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                  className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
                 >
                   ここむすび
                 </Link>
@@ -230,7 +275,7 @@ export default function Header() {
                 >
                   ここいく
                 </Link>
-                  <Link
+                <Link
                   href="/kokoroom"
                   onClick={() => setIsOpen(false)}
                   className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
@@ -244,7 +289,7 @@ export default function Header() {
                 >
                   ここにっし
                 </Link>
-                  <Link
+                <Link
                   href="/kokocheck"
                   onClick={() => setIsOpen(false)}
                   className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
