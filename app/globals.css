@@ -32,8 +32,11 @@ main {
   background-repeat: repeat-x;        /* 縦方向にリピートして下まで敷き詰める */
   background-size: 100% auto;          /* 横幅を画面100%に固定し、縦は自動調整 */
   background-position: top center;     /* 上中央から配置 */
-  background-color: #ffffff;          /* ベース背景色 */
+  background-color: #fefcf8;          /* ベース背景色 */
 
   min-height: 100vh;
   margin: 0;
+}
+body{
+  background-color: #fefcf8;
 }
