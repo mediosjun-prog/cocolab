@@ -87,7 +87,7 @@ export default function HomePageContent() {
               style={{ backgroundImage: "url('/images/bg-chat2.png')" }}
             />
             <div className="relative z-10">
-              自分の気持ちを言葉にするのが苦手で、モヤモヤを一人で抱え込む
+              人に頼るのが苦手で、何でも自分一人で頑張ってしまう
             </div>
           </div>
         </div>
