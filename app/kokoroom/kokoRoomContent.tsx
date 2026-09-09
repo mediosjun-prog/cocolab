@@ -153,7 +153,7 @@ export default function KokoRoomContent() {
         <button
           onClick={handleStartRoom}
           disabled={isLoading || selectedMembers.length === 0}
-          className="w-full py-4 bg-emerald-600 !text-white hover:bg-[#1F2937] font-medium rounded-2xl shadow-sm transition-all text-center flex items-center justify-center gap-2 disabled:opacity-50"
+          className="w-full py-4 bg-emerald-600 hover:bg-emerald-700 !text-white font-medium rounded-2xl shadow-sm transition-all text-center flex items-center justify-center gap-2 disabled:opacity-50"
         >
           {isLoading ? (
             <span>ルームを準備中...</span>

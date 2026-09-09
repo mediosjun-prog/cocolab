@@ -167,7 +167,7 @@ export default function KokocheckPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4 bg-[#446246] hover:bg-[#354e38] text-white font-bold rounded-2xl shadow-md transition-all cursor-pointer disabled:opacity-50 text-sm sm:text-base flex items-center justify-center gap-2"
+                className="w-full py-4 bg-emerald-600 hover:bg-emerald-700 !text-white font-bold rounded-2xl shadow-md transition-all cursor-pointer disabled:opacity-50 text-sm sm:text-base flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <>
@@ -218,7 +218,7 @@ export default function KokocheckPage() {
 
             <button
               onClick={() => setResult(null)}
-              className="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-2xl transition-all cursor-pointer text-sm"
+              className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 !text-white font-bold rounded-2xl transition-all cursor-pointer text-sm"
             >
               別のシチュエーションで再挑戦する
             </button>

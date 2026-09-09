@@ -57,6 +57,13 @@ export default function Header() {
           </Link>
 
           <Link
+            href="/cases"
+            className="text-sm font-medium text-slate-600 hover:text-[#5d8860] transition-colors"
+          >
+            事例
+          </Link>
+
+          <Link
             href="/diagnosis"
             className="text-sm font-medium text-slate-600 hover:text-[#5d8860] transition-colors"
           >
@@ -200,6 +207,14 @@ export default function Header() {
             className="block py-2.5 px-3 rounded-xl text-base font-medium text-slate-700 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
           >
             ここらぼについて
+          </Link>
+
+          <Link
+            href="/cases"
+            onClick={() => setIsOpen(false)}
+            className="block py-2.5 px-3 rounded-xl text-base font-medium text-slate-700 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+          >
+            事例
           </Link>
 
           <Link
