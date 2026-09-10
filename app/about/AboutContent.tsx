@@ -7,6 +7,11 @@ import PageHeader from '@/components/PageHeader';
 // 機能・特徴のデータ構造
 const features = [
   {
+    title: 'ここのーと',
+    description: '心理プログラム・対話トレーニング・セルフケアなど、心の状態に合わせて多彩なコンテンツを自由に選んで体験できるポータルスペースです。',
+    tag: 'コンテンツ一覧',
+  },
+  {
     title: '音声＆テキスト両対応',
     description: '声を出して話したい時も、文字で落ち着いて書き出したい時も、ご自身の好みの方法で自由にご利用いただけます。',
     tag: '使いやすさ',
@@ -167,6 +172,67 @@ export default function AboutContent() {
                   詳細ご案内
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* --- ここらぼノート（ここのーと）のご案内 --- */}
+        <section className="bg-gradient-to-br from-[#F2FBF4] to-[#E8F5E9] rounded-3xl p-6 sm:p-10 shadow-sm border border-[#D1E7D2] space-y-6">
+          <div className="text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-800">
+          安心回復の「ここのーと」プログラム
+          </h2>
+            <p className="text-slate-500 text-sm mt-1">セルフケア・心理プログラム</p>
+          </div>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#D1E7D2] pb-4">
+            <div>
+              <span className="inline-block bg-[#D0F9C7] text-[#446246] text-xs font-semibold px-3 py-1 rounded-full mb-2">
+                CONTENT PORTAL
+              </span>
+              <h2 className="text-2xl font-bold text-[#2d4a30]">
+                「ここのーと」とは？
+              </h2>
+            </div>
+            <Link
+              href="/kokonote"
+              className="inline-block bg-[#5d8860] hover:bg-[#4c724f] !text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-xl transition-colors text-center shadow-xs"
+            >
+              ここのーと（一覧）を見る ↗
+            </Link>
+          </div>
+
+          <div className="space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed">
+            <p>
+              「ここのーと」は、あなたの心の状態に優しく寄り添う、多彩なセルフケア・心理プログラムをまとめたポータルスペースです。
+              愛着の傷を癒やす深層プログラムから、日々の対話トレーニング、癒やしのデジタル庭園や心の日記まで、あなたのペースに合わせて自由に選んで体験できます。
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+            <div className="bg-white/80 p-4 rounded-2xl border border-[#D1E7D2] space-y-1">
+              <span className="text-xs font-bold text-emerald-700">心理プログラム</span>
+              <h3 className="font-bold text-slate-800 text-sm">ここむすび / ここかこ / ここすれ</h3>
+              <p className="text-xs text-slate-600">愛着の傷や記憶の再構築を行い、内的安全基地を育てます。</p>
+            </div>
+            <div className="bg-white/80 p-4 rounded-2xl border border-[#D1E7D2] space-y-1">
+              <span className="text-xs font-bold text-emerald-700">対話トレーニング</span>
+              <h3 className="font-bold text-slate-800 text-sm">ここいく / ここちょい / ここるーむ</h3>
+              <p className="text-xs text-slate-600">人間関係のすれ違いや言いづらい場面を安全にロールプレイング。</p>
+            </div>
+            <div className="bg-white/80 p-4 rounded-2xl border border-[#D1E7D2] space-y-1">
+              <span className="text-xs font-bold text-emerald-700">セルフケア・育成</span>
+              <h3 className="font-bold text-slate-800 text-sm">ここにっし / ここにわ</h3>
+              <p className="text-xs text-slate-600">日々の記録や小さなセルフケアで、心とデジタル庭園を育てます。</p>
+            </div>
+              <div className="bg-white/80 p-4 rounded-2xl border border-[#D1E7D2] space-y-1">
+              <span className="text-xs font-bold text-emerald-700">診断</span>
+              <h3 className="font-bold text-slate-800 text-sm">ここチェック</h3>
+              <p className="text-xs text-slate-600">今の回復度をチェックします。</p>
+            </div>
+              <div className="bg-white/80 p-4 rounded-2xl border border-[#D1E7D2] space-y-1">
+              <span className="text-xs font-bold text-emerald-700">ログ・履歴</span>
+              <h3 className="font-bold text-slate-800 text-sm">こころぐ</h3>
+              <p className="text-xs text-slate-600">利用した履歴や、ご自身の心の変化の軌跡を振り返ります</p>
             </div>
           </div>
         </section>

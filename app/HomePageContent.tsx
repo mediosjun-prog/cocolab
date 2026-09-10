@@ -54,16 +54,14 @@ export default function HomePageContent() {
             />
           </div>
         </div>
-<div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           
           {/* --- 1つ目のカード --- */}
           <div className="relative py-10 px-9 text-slate-700 text-sm leading-relaxed overflow-hidden">
-            {/* 背景画像用の擬似要素（ここで透明度を調整） */}
             <div 
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40" // opacity-20 で調整
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
               style={{ backgroundImage: "url('/images/bg-chat2.png')" }}
             />
-            {/* テキストコンテンツ（画像の上に表示させるため relative z-10） */}
             <div className="relative z-10">
               自分の気持ちを言葉にするのが苦手で、モヤモヤを一人で抱え込む
             </div>
@@ -102,7 +100,7 @@ export default function HomePageContent() {
           <p className="text-slate-500 text-sm mt-1">あなたのペースに合わせた安心のプロセス</p>
         </div>
 
-<div className="grid gap-6 sm:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-3">
           {/* Feature 1 */}
           <div className="bg-[#fafaf2] rounded-2xl p-6 border border-slate-100 flex flex-col justify-between">
             <div>
@@ -195,26 +193,71 @@ export default function HomePageContent() {
         </div>
       </section>
 
-{/* --- ここから下部セクションのイメージ --- */}
-      <section className="py-20 px-4 bg-[#F9F6D9] text-center w-full">
+      {/* --- 5. 新着・更新情報（お知らせ）セクション --- */}
+      <section className="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
+          <div>
+            <span className="text-xs font-bold text-[#5d8860] bg-[#D0F9C7] px-2.5 py-1 rounded-md">
+              NEWS & UPDATES
+            </span>
+            <h2 className="text-xl font-bold text-slate-800 mt-2">
+              新着・更新情報
+            </h2>
+          </div>
+        </div>
+
+        {/* お知らせリスト */}
+        <div className="divide-y divide-slate-100 text-sm">
+          <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
+            <div className="flex items-center gap-3">
+              <span className="text-xs text-slate-400">2026.09.07</span>
+              <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここるーむ</span>
+            </div>
+            <Link href="/kokoniwa" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
+              ここにわ〜ここらぼガーデン〜を公開しました。
+            </Link>
+          </div>
+
+          <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
+            <div className="flex items-center gap-3">
+              <span className="text-xs text-slate-400">2026.09.01</span>
+              <span className="text-xs bg-amber-100 text-amber-800 font-medium px-2 py-0.5 rounded">お知らせ</span>
+            </div>
+            <Link href="/about" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
+              メンタルケアプラットフォーム「ここらぼ」を正式オープンしました。
+            </Link>
+          </div>
+
+          <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
+            <div className="flex items-center gap-3">
+              <span className="text-xs text-slate-400">2026.08.25</span>
+              <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここるーむ</span>
+            </div>
+            <Link href="/kokosure" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
+              ここすれ〜心のすれ違いクエスト〜を更新しました。
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* --- 6. 愛着についての深掘りセクション --- */}
+      <section className="py-16 px-4 bg-[#F9F6D9] text-center w-full rounded-3xl max-w-4xl mx-auto">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold text-[#3B523D]">
             ご自身の愛着についてさらに深く知る
           </h2>
-          <p className="text-slate-600 mt-4 leading-relaxed">
+          <p className="text-slate-600 mt-4 leading-relaxed text-sm sm:text-base">
             診断結果をもとに、あなたの愛着タイプに合わせた具体的な向き合い方や、心を軽くするためのヒントを記事でご紹介しています。
           </p>
           
-          {/* ★ 一覧ページへのリンクボタン ★ */}
           <Link 
-            href="/articles/category/attachment" // 先ほど作成した一覧ページのパス
-            className="inline-block mt-10 px-8 py-4 bg-[#5A7A5C] !text-white font-bold rounded-xl hover:bg-[#4A5A4B] transition shadow-md"
+            href="/articles/category/attachment"
+            className="inline-block mt-8 px-8 py-4 bg-[#5A7A5C] !text-white font-bold rounded-xl hover:bg-[#4A5A4B] transition shadow-md text-sm sm:text-base"
           >
             愛着タイプに関する記事一覧を見る →
           </Link>
         </div>
       </section>
-      
 
     </main>
   );

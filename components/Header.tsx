@@ -121,6 +121,13 @@ export default function Header() {
             {pcRecoveryOpen && (
               <div className="absolute top-full left-0 w-48 bg-white rounded-2xl shadow-lg border border-slate-100 py-2 space-y-1 z-50">
                 <Link
+                  href="/kokonote"
+                  onClick={() => setPcRecoveryOpen(false)}
+                  className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここのーと
+                </Link>
+                <Link
                   href="/kokomusubi"
                   onClick={() => setPcRecoveryOpen(false)}
                   className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
@@ -133,6 +140,20 @@ export default function Header() {
                   className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
                 >
                   ここかこ
+                </Link>
+                <Link
+                  href="/kokochoi"
+                  onClick={() => setPcRecoveryOpen(false)}
+                  className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここちょい
+                </Link>
+                <Link
+                  href="/kokosure"
+                  onClick={() => setPcRecoveryOpen(false)}
+                  className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここすれ
                 </Link>
                 <Link
                   href="/iko"
@@ -156,11 +177,25 @@ export default function Header() {
                   ここにっし
                 </Link>
                 <Link
+                  href="/kokoniwa"
+                  onClick={() => setPcRecoveryOpen(false)}
+                  className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここにわ
+                </Link>
+                <Link
                   href="/kokocheck"
                   onClick={() => setPcRecoveryOpen(false)}
                   className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
                 >
                   ここチェック
+                </Link>
+                <Link
+                  href="/kokorogu"
+                  onClick={() => setPcRecoveryOpen(false)}
+                  className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  こころぐ
                 </Link>
               </div>
             )}
@@ -270,6 +305,13 @@ export default function Header() {
             {mobileRecoveryOpen && (
               <div className="pl-4 space-y-1 mt-1 border-l-2 border-slate-100 ml-3">
                 <Link
+                  href="/kokonote"
+                  onClick={() => setIsOpen(false)}
+                  className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここのーと
+                </Link>
+                <Link
                   href="/kokomusubi"
                   onClick={() => setIsOpen(false)}
                   className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
@@ -282,6 +324,20 @@ export default function Header() {
                   className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
                 >
                   ここかこ
+                </Link>
+                <Link
+                  href="/kokochoi"
+                  onClick={() => setIsOpen(false)}
+                  className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここちょい
+                </Link>
+                <Link
+                  href="/kokosure"
+                  onClick={() => setIsOpen(false)}
+                  className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここすれ
                 </Link>
                 <Link
                   href="/iko"
@@ -305,11 +361,25 @@ export default function Header() {
                   ここにっし
                 </Link>
                 <Link
+                  href="/kokoniwa"
+                  onClick={() => setIsOpen(false)}
+                  className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここにわ
+                </Link>
+                <Link
                   href="/kokocheck"
                   onClick={() => setIsOpen(false)}
                   className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
                 >
                   ここチェック
+                </Link>
+                <Link
+                  href="/kokorogu"
+                  onClick={() => setIsOpen(false)}
+                  className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  こころぐ
                 </Link>
               </div>
             )}
