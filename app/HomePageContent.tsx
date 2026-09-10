@@ -220,7 +220,7 @@ export default function HomePageContent() {
 
           <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
             <div className="flex items-center gap-3">
-              <span className="text-xs text-slate-400">2026.09.057/span>
+              <span className="text-xs text-slate-400">2026.09.07</span>
               <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここるーむ</span>
             </div>
             <Link href="/kokosure" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
