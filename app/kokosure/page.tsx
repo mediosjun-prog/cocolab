@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import KokosureContent from './KokosureContent';
 
 export const metadata: Metadata = {

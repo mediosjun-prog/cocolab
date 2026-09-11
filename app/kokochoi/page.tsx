@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import KokochoiContent from './KokochoiContent';
 
 export const metadata: Metadata = {

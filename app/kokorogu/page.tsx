@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import KokoroguContent from './KokoroguContent';
 
 export const metadata: Metadata = {
