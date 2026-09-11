@@ -156,6 +156,13 @@ export default function Header() {
                   ここすれ
                 </Link>
                 <Link
+                  href="/kokomie"
+                  onClick={() => setPcRecoveryOpen(false)}
+                  className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここみえ
+                </Link>
+                <Link
                   href="/kokosuki"
                   onClick={() => setPcRecoveryOpen(false)}
                   className="block px-4 py-2 text-xs font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
@@ -352,6 +359,13 @@ export default function Header() {
                   className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
                 >
                   ここすれ
+                </Link>
+                <Link
+                  href="/kokomie"
+                  onClick={() => setIsOpen(false)}
+                  className="block py-2 px-3 rounded-lg text-sm font-medium text-slate-600 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
+                >
+                  ここみえ
                 </Link>
                 <Link
                   href="/kokosuki"

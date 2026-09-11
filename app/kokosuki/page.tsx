@@ -4,7 +4,7 @@ import KokosukiContent from './KokosukiContent';
 import PageHeader from '@/components/PageHeader';
 
 export const metadata: Metadata = {
-  title: 'ここすき（ポジティブ変換） | ここらぼ',
+  title: 'ここすき（ポジティブ変換） | ここらぼ - 心に寄り添うセルフケア',
   description: '自分の気になる欠点やネガティブな要素をポジティブに解釈し、温かく誉めてもらえるセルフケアツールです。',
 };
 

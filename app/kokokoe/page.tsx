@@ -4,7 +4,7 @@ import KokokoeContent from './KokokoeContent';
 import PageHeader from '@/components/PageHeader';
 
 export const metadata: Metadata = {
-  title: 'こここえ（心にしみる言葉のシャワー） | ここらぼ',
+  title: 'こここえ（心にしみる言葉のシャワー） | ここらぼ - 心に寄り添うセルフケア',
   description: '大切な人や自分からかけてほしい温かい言葉を選び、リピート再生で心を満たすセルフケアコンテンツです。',
 };
 

@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import KokoRoomContent from './kokoRoomContent';
 
 export const metadata: Metadata = {
-  title: 'ここるーむ | 心に寄り添うセルフケア',
+  title: 'ここるーむ | ここらぼ - 心に寄り添うセルフケア',
   description: 'ここらぼは、愛着理論に基づく心理診断とAIカウンセリング、専門家サポートを提供するメンタルケアプラットフォームです。',
 };
 

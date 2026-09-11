@@ -211,7 +211,7 @@ export default function AboutContent() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
             <div className="bg-white/80 p-4 rounded-2xl border border-[#D1E7D2] space-y-1">
               <span className="text-xs font-bold text-emerald-700">心理プログラム</span>
-              <h3 className="font-bold text-slate-800 text-sm">ここむすび / ここかこ / ここすれ</h3>
+              <h3 className="font-bold text-slate-800 text-sm">ここむすび / ここかこ / ここすれ / ここみえ</h3>
               <p className="text-xs text-slate-600">愛着の傷や記憶の再構築を行い、内的安全基地を育てます。</p>
             </div>
             <div className="bg-white/80 p-4 rounded-2xl border border-[#D1E7D2] space-y-1">

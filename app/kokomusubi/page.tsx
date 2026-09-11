@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import KokokomusubiContent from './KokokomusubiContent';
 
 export const metadata: Metadata = {
-  title: 'ここむすび | 心に寄り添うセルフケア',
+  title: 'ここむすび | ここらぼ - 心に寄り添うセルフケア',
   description: 'ここらぼは、愛着理論に基づく心理診断とAIカウンセリング、専門家サポートを提供するメンタルケアプラットフォームです。',
 };
 

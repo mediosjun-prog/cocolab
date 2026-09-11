@@ -1,6 +1,7 @@
+// app/kokorogu/KokoroguContent.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
 
@@ -8,29 +9,75 @@ interface LogItem {
   id: string;
   date: string;
   type: 
-    | 'ここむすび' 
-    | 'ここかこ' 
-    | 'ここちょい' 
-    | 'ここすれ' 
-    | 'ここいく' 
-    | 'ここるーむ' 
-    | 'ここにっし' 
-    | 'ここにわ' 
+    | 'ここむすび'
+    | 'ここかこ'
+    | 'ここちょい'
+    | 'ここすれ'
+    | 'ここみえ'
+    | 'ここすき'
+    | 'こここえ'
+    | 'ここいく'
+    | 'ここるーむ'
+    | 'ここにっし'
+    | 'ここにわ'
     | 'ここチェック';
   title: string;
   summary: string;
 }
-// サンプル履歴データ
-const INITIAL_LOGS: LogItem[] = [
-
-];
 
 export default function KokoroguContent() {
-  const [logs, setLogs] = useState<LogItem[]>(INITIAL_LOGS);
+  const [logs, setLogs] = useState<LogItem[]>([]);
+
+  // ページ読み込み時に各ローカルストレージから履歴をかき集めて表示する
+  useEffect(() => {
+    const loadedLogs: LogItem[] = [];
+
+    try {
+      // 1. 「ここすき」の履歴を取得
+      const kokosukiData = localStorage.getItem('kokurabo_kokosuki_records');
+      if (kokosukiData) {
+        const items = JSON.parse(kokosukiData);
+        items.forEach((item: any) => {
+          const negativesText = [...(item.negatives || []), item.customNegative].filter(Boolean).join('、');
+          loadedLogs.push({
+            id: `kokosuki-${item.id}`,
+            date: item.date ? item.date.split('T')[0] : '',
+            type: 'ここすき',
+            title: negativesText ? `「${negativesText}」の変換` : 'ここすき変換',
+            summary: item.positiveMessage || '',
+          });
+        });
+      }
+
+      // 2. 「ここみえ」の履歴を取得
+      const kokomieData = localStorage.getItem('kokomie_history_v1');
+      if (kokomieData) {
+        const items = JSON.parse(kokomieData);
+        items.forEach((item: any) => {
+          loadedLogs.push({
+            id: `kokomie-${item.id}`,
+            date: item.createdAt ? item.createdAt.split('T')[0] : (item.date ? item.date.split('T')[0] : ''),
+            type: 'ここみえ',
+            title: item.question || '心のパレット',
+            summary: item.message ? `選択: ${item.selectedChoice}\n${item.message}` : (item.aiResponse || ''),
+          });
+        });
+      }
+
+      // 日付の新しい順に並び替え
+      loadedLogs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      
+      setLogs(loadedLogs);
+    } catch (e) {
+      console.error('Failed to load logs', e);
+    }
+  }, []);
 
   // 履歴をクリアする関数
   const handleClearLogs = () => {
     if (window.confirm('これまでの利用履歴をすべてクリアしますか？')) {
+      localStorage.removeItem('kokurabo_kokosuki_records');
+      localStorage.removeItem('kokomie_history_v1');
       setLogs([]);
     }
   };
@@ -58,7 +105,7 @@ export default function KokoroguContent() {
           <div className="space-y-1">
             <span className="text-xs font-bold text-emerald-700">トータル活動記録</span>
             <h2 className="text-2xl font-extrabold text-[#1F2937]">
-              今週のケア回数：<span className="text-emerald-700">{logs.length > 0 ? '3回' : '0回'}</span>
+              保存された記録：<span className="text-emerald-700">{logs.length}件</span>
             </h2>
             <p className="text-xs text-[#6B7280]">ご自身のペースで着実に心が整っています。</p>
           </div>
@@ -73,7 +120,7 @@ export default function KokoroguContent() {
           {logs.length > 0 && (
             <button
               onClick={handleClearLogs}
-              className="text-xs text-rose-500 hover:text-rose-700 font-medium underline transition-all"
+              className="text-xs text-rose-500 hover:text-rose-700 font-medium underline transition-all cursor-pointer"
             >
               履歴をクリアする
             </button>
@@ -97,7 +144,7 @@ export default function KokoroguContent() {
                 <h4 className="text-base font-bold text-[#1F2937]">
                   {log.title}
                 </h4>
-                <p className="text-xs sm:text-sm text-[#4B5563] bg-[#FAFAF8] p-3 rounded-xl border border-[#EFECE6]">
+                <p className="text-xs sm:text-sm text-[#4B5563] bg-[#FAFAF8] p-3 rounded-xl border border-[#EFECE6] whitespace-pre-wrap">
                   {log.summary}
                 </p>
               </div>
@@ -110,7 +157,7 @@ export default function KokoroguContent() {
               現在、保存されている履歴はありません。
             </p>
             <p className="text-xs text-[#9CA3AF]">
-              「ここすれ」や「ここにわ」などを使ってみましょう！
+              「ここすき」や「ここみえ」などを使ってみましょう！
             </p>
           </div>
         )}
