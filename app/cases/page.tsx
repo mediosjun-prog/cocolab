@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import CasesContent from './CasesContent';
 
 export const metadata: Metadata = {
