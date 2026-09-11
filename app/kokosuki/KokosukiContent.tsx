@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { saveKokosukiRecord, getKokosukiRecords, KokosukiRecord, deleteKokosukiRecord } from './kokosukiStorage';
 
 const COMMON_NEGATIVES = [
-'気にしすぎ、考えすぎてしまう',
+  '気にしすぎ、考えすぎてしまう',
   '断るのが苦手、流されやすい',
   '行動が遅い、慎重すぎる',
   '三日坊主になりやすい',
@@ -57,14 +57,26 @@ export default function KokosukiContent() {
     setSaved(false);
 
     try {
-      const res = await fetch('/api/kokosuki/ai', {
+      let res = await fetch('/api/kokosuki/ai', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ negatives: selectedNegatives, customNegative }),
       });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message);
+      let data = await res.json();
+
+      // 503エラー（高負荷）の場合に2秒待って1度だけ自動リトライ
+      if (res.status === 503) {
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        res = await fetch('/api/kokosuki/ai', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ negatives: selectedNegatives, customNegative }),
+        });
+        data = await res.json();
+      }
+
+      if (!res.ok) throw new Error(data.message || 'AIモデルが現在混雑しています。少し時間を置いて再度お試しください。');
 
       setAiResponse(data.message);
     } catch (err: any) {
