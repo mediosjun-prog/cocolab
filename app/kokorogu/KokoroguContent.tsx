@@ -22,27 +22,7 @@ interface LogItem {
 }
 // サンプル履歴データ
 const INITIAL_LOGS: LogItem[] = [
-  {
-    id: '1',
-    date: '2026-06-07',
-    type: 'ここすれ',
-    title: '愛着スタイル診断',
-    summary: '判定：しなやか安定タイプ ── 自分と相手の境界線を心地よく保てています。',
-  },
-  {
-    id: '2',
-    date: '2026-06-06',
-    type: 'ここにわ',
-    title: 'セルフケア・チェックイン',
-    summary: '達成項目：ウォーキング / 睡眠 / 心を緩める（お庭レベルがアップしました🌱）',
-  },
-  {
-    id: '3',
-    date: '2026-06-05',
-    type: 'ここちょい',
-    title: '連絡が減ったパートナーとの対話',
-    summary: '選択：相手を責めず自分の境界線を守るアサーティブな返答ができました。',
-  },
+
 ];
 
 export default function KokoroguContent() {

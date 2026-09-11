@@ -225,6 +225,11 @@ export default function AboutContent() {
               <p className="text-xs text-slate-600">日々の記録や小さなセルフケアで、心とデジタル庭園を育てます。</p>
             </div>
               <div className="bg-white/80 p-4 rounded-2xl border border-[#D1E7D2] space-y-1">
+              <span className="text-xs font-bold text-emerald-700">セルフケア</span>
+              <h3 className="font-bold text-slate-800 text-sm">ここすき / こここえ</h3>
+              <p className="text-xs text-slate-600">あなたをもっと好きになる。</p>
+            </div>
+              <div className="bg-white/80 p-4 rounded-2xl border border-[#D1E7D2] space-y-1">
               <span className="text-xs font-bold text-emerald-700">診断</span>
               <h3 className="font-bold text-slate-800 text-sm">ここチェック</h3>
               <p className="text-xs text-slate-600">今の回復度をチェックします。</p>

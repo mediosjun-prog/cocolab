@@ -46,6 +46,23 @@ const ITEMS: ContentItem[] = [
     badge: '人気No.1',
   },
   {
+    title: 'ここすき',
+    nameEn: 'POSITIVE REFRAME',
+    category: 'セルフケア',
+    description: 'ご自身の気になる部分をポジティブに解釈し直して、あたたかいメッセージで心をほぐします。',
+    href: '/kokosuki',
+    badge: 'あなたの魅力度UP',
+  },
+  {
+    title: 'こここえ',
+    nameEn: 'PSYCHOLOGICAL TEST',
+    category: 'セルフケア',
+    description: '人間関係のよくある5つのワンシーン。あなたならどう動く？',
+    href: '/kokokoe',
+    badge: 'あなたの魅力度UP',
+  },
+
+  {
     title: 'ここいく',
     nameEn: 'COCOIKU',
     category: '対話トレーニング',

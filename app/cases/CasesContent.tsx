@@ -137,14 +137,14 @@ export default function CasesContent() {
   return (
     <main className="w-full pb-20">
       {/* 共通のヘッダーセクション */}
-      <section className="relative overflow-hidden from-[#E8F5E9] via-[#F1F8F2] to-[#FDFBF7] py-16 px-4 text-center border-b border-[#EFECE6] mb-10">
+      <section className="relative overflow-hidden from-[#E8F5E9] via-[#F1F8F2] to-[#FDFBF7] py-16 px-4 text-center">
         <div className="max-w-3xl mx-auto space-y-4 relative z-10">
           <div>
             <span className="inline-block bg-[#D0F9C7] text-[#446246] text-xs font-semibold px-3 py-1 rounded-full shadow-xs">
               CASE STUDY
             </span>
           </div>
-          <PageHeader title="すれ違いの向こう側 —— 愛着のパターンから読み解く人間関係の物語" />
+          <PageHeader title="すれ違いの向こう側 —— 愛着のパターンから読み解く人間関係" />
           <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
             「どうしてあのとき、あんな言い方をしてしまったのだろう」。人間関係のモヤモヤやすれ違いの裏側にある、無意識の心の仕組み（愛着スタイル）を、物語と専門的な視点から紐解きます。
           </p>
