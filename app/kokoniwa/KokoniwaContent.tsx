@@ -51,7 +51,7 @@ export default function KokoniwaContent() {
           <span className="inline-block bg-[#D0F9C7] text-[#446246] text-xs font-semibold px-3 py-1 rounded-full shadow-xs">
             デジタル癒やし庭園
           </span>
-          <PageHeader title="ここにわ 〜ここらぼガーデン〜" />
+          <PageHeader title="ここにわ" />
           <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
             日々の小さなセルフケア（歩く、眠る、心を緩める）を記録すると、あなたのお庭の植物や相棒がすくすく育つ癒やしのスペースです。
           </p>

@@ -90,7 +90,7 @@ export default function KokoroguContent() {
           <span className="inline-block bg-[#D0F9C7] text-[#446246] text-xs font-semibold px-3 py-1 rounded-full shadow-xs">
             マイログ・履歴
           </span>
-          <PageHeader title="こころぐ 〜あなたの心の歩み〜" />
+          <PageHeader title="こころぐ" />
           <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
             ここシリーズのコンテンツを利用した履歴や、ご自身の心の変化の軌跡を振り返るパーソナルスペースです。
           </p>

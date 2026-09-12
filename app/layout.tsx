@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Header from '@/components/Header'; // ① インポート
-import Footer from '@/components/Footer'; // ① インポート
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import KokonaviBot from '@/components/KokonaviBot';
 
 export const metadata: Metadata = {
 title: {
@@ -29,6 +30,8 @@ export default function RootLayout({
 
         {/* ④ 共通フッター */}
         <Footer />
+        {/* 🌟 ⑤ サイト全体に常駐する「ここなび」チャットボット */}
+        <KokonaviBot />
       </body>
     </html>
   );

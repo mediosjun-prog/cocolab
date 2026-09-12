@@ -129,7 +129,7 @@ export default function KokonoteContent() {
           <span className="inline-block bg-[#D0F9C7] text-[#446246] text-xs font-semibold px-3 py-1 rounded-full shadow-xs">
             コンテンツカタログ
           </span>
-          <PageHeader title="ここのーと 〜ここシリーズ一覧〜" />
+          <PageHeader title="ここのーと" />
           <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
             ここらぼが提供するすべての体験型コンテンツや癒やしツールのまとめノートです。今のあなたに必要な場所へすぐアクセスできます。
           </p>

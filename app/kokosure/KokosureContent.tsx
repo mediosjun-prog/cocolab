@@ -206,7 +206,7 @@ export default function KokosureContent() {
           <span className="inline-block bg-[#D0F9C7] text-[#446246] text-xs font-semibold px-3 py-1 rounded-full shadow-xs">
             2分でわかる心理テスト
           </span>
-          <PageHeader title="ここすれ 〜心のすれ違いクエスト〜" />
+          <PageHeader title="ここすれ" />
           <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
             人間関係のよくある5つのワンシーン。あなたならどう動く？ 選択肢を通じて、無意識の愛着パターンや心のくせを楽しく紐解きます。
           </p>

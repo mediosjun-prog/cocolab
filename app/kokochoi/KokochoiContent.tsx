@@ -318,7 +318,7 @@ export default function KokochoiContent() {
           <span className="inline-block bg-[#D0F9C7] text-[#446246] text-xs font-semibold px-3 py-1 rounded-full shadow-xs">
             対話型トレーニング
           </span>
-          <PageHeader title="ここちょい 〜AIカウンセラー練武場〜" />
+          <PageHeader title="ここちょい" />
           <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
             人間関係のちょっとした言いづらい場面やすれ違いを、AI相手に安全にロールプレイング（練習）できるスペースです。
           </p>
