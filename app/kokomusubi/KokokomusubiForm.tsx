@@ -44,9 +44,9 @@ export default function KokokomusubiForm({ onSubmit, loading }: KokokomusubiForm
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-6 text-sm">
         {/* 1. 愛着の傷・傾向の選択 */}
-        <div className="p-4 rounded-2xl bg-emerald-50/20 border border-emerald-100 space-y-2">
+        <div className="p-4 rounded-3xl bg-emerald-50/20 border border-emerald-100 space-y-2">
           <label className="block font-bold text-gray-700">
-            ご自身の中に感じる「愛着のパターンや傾向」（複数選択可）
+            ☘️ ご自身の中に感じる「愛着のパターンや傾向」（複数選択可）
           </label>
           <div className="flex flex-wrap gap-2 pt-1">
             {ATTACHMENT_ISSUES.map((issue) => {
@@ -72,7 +72,7 @@ export default function KokokomusubiForm({ onSubmit, loading }: KokokomusubiForm
         {/* 2. 子ども時代の親子関係のダイナミクス */}
         <div>
           <label className="block font-bold text-gray-700 mb-1">
-            子ども時代、親との関係で最もプレッシャーだったことや環境
+            ☘️ 子ども時代、親との関係で最もプレッシャーだったことや環境
           </label>
           <textarea
             value={parentDynamic}
@@ -86,7 +86,7 @@ export default function KokokomusubiForm({ onSubmit, loading }: KokokomusubiForm
         {/* 3. 今の対人関係や生きづらさでの悩み */}
         <div>
           <label className="block font-bold text-gray-700 mb-1">
-            現在、パートナーシップや人間関係で繰り返してしまうお悩み
+            ☘️ 現在、パートナーシップや人間関係で繰り返してしまうお悩み
           </label>
           <textarea
             value={currentChallenge}

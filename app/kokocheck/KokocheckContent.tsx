@@ -85,7 +85,7 @@ export default function KokocheckContent() {
               {/* 1. シチュエーション選択 */}
               <div className="space-y-2">
                 <label className="block text-sm font-bold text-slate-700">
-                  1. 場面・関係性の選択
+                  ☘️ 1. 場面・関係性の選択
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {situationOptions.map((opt) => (
@@ -108,7 +108,7 @@ export default function KokocheckContent() {
               {/* 2. 自分の振る舞い（選択式 ＋ 詳細・補足の統合ブロック） */}
               <div className="space-y-3">
                 <label className="block text-sm font-bold text-slate-700">
-                  2. その時、どのように振る舞ってしまいましたか？（最も近いものをお選びください）
+                  ☘️ 2. その時、どのように振る舞ってしまいましたか？（最も近いものをお選びください）
                 </label>
                 <div className="space-y-2">
                   {behaviorOptions.map((beh) => (
@@ -151,7 +151,7 @@ export default function KokocheckContent() {
               {/* 3. 関係性の背景（任意） */}
               <div className="space-y-2">
                 <label className="block text-sm font-bold text-slate-700" htmlFor="relationshipContext">
-                  3. 相手との関係性や、心の背景（任意）
+                  ☘️ 3. 相手との関係性や、心の背景（任意）
                 </label>
                 <input
                   type="text"
