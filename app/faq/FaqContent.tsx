@@ -52,7 +52,7 @@ export default function FaqContent() {
   return (
     <main className="w-full p-4 md:p-8">
       {/* コンテンツの幅制限と中央寄せ */}
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* 統一されたヘッダーセクション */}
         <section className="text-center space-y-4 pt-4 mb-10">
           <div>

@@ -6,10 +6,10 @@ import PageHeader from '@/components/PageHeader';
 export default function PrivacyContent() {
   return (
     <main className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto space-y-12">
+      <div className="max-w-6xl mx-auto space-y-12">
         
         {/* ヒーローヘッダーセクション（他ページ共通仕様） */}
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <div className="max-w-6xl mx-auto text-center relative z-10">
           <section className="text-center space-y-4 pt-4">
             <span className="inline-block bg-[#D0F9C7] text-[#446246] text-xs font-semibold px-3 py-1 rounded-full">
               PRIVACY POLICY
@@ -22,7 +22,7 @@ export default function PrivacyContent() {
         </div>
 
         {/* メインコンテンツカード */}
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 -mt-6 relative z-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 -mt-6 relative z-20">
           <div className="bg-white rounded-2xl shadow-sm border border-[#E2EAE1] p-8 sm:p-12">
             
             {/* 戻るリンク */}

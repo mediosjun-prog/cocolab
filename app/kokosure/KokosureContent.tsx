@@ -202,7 +202,7 @@ export default function KokosureContent() {
     <main className="w-full pb-20">
       {/* ヘッダーセクション */}
       <section className="relative overflow-hidden from-[#E8F5E9] via-[#F1F8F2] to-[#FDFBF7] py-16 px-4 text-center">
-        <div className="max-w-4xl mx-auto space-y-4 relative z-10">
+        <div className="max-w-6xl mx-auto space-y-4 relative z-10">
           <span className="inline-block bg-[#D0F9C7] text-[#446246] text-xs font-semibold px-3 py-1 rounded-full shadow-xs">
             2分でわかる心理テスト
           </span>
@@ -214,7 +214,7 @@ export default function KokosureContent() {
       </section>
 
       {/* メインゲームエリア */}
-      <div className="max-w-4xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4">
         {!isFinished ? (
           <div className="bg-white border border-[#EFECE6] rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
             {/* 進捗バー */}

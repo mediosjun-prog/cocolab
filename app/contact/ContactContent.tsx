@@ -70,7 +70,7 @@ ${formData.message || 'なし'}
   return (
     <main className="w-full p-4 md:p-8">
       {/* コンテンツの幅制限と中央寄せ */}
-      <div className="max-w-4xl mx-auto space-y-6">
+      <div className="max-w-6xl mx-auto space-y-6">
         {/* 戻るボタンエリア */}
         <div>
           <button
@@ -98,7 +98,7 @@ ${formData.message || 'なし'}
         </section>
 
         {/* フォーム部分 */}
-        <div className="max-w-2xl mx-auto bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm">
+        <div className="max-w-6xl mx-auto bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm">
           {submitted ? (
             <div className="text-center py-8 space-y-4">
               <div className="text-4xl">✉️</div>

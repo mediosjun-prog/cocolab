@@ -138,7 +138,7 @@ export default function CasesContent() {
     <main className="w-full pb-20">
       {/* 共通のヘッダーセクション */}
       <section className="relative overflow-hidden from-[#E8F5E9] via-[#F1F8F2] to-[#FDFBF7] py-16 px-4 text-center">
-        <div className="max-w-3xl mx-auto space-y-4 relative z-10">
+        <div className="max-w-6xl mx-auto space-y-4 relative z-10">
           <div>
             <span className="inline-block bg-[#D0F9C7] text-[#446246] text-xs font-semibold px-3 py-1 rounded-full shadow-xs">
               CASE STUDY

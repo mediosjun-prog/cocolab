@@ -36,7 +36,7 @@ const features = [
 export default function AboutContent() {
   return (
     <main className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto space-y-12">
+      <div className="max-w-6xl mx-auto space-y-12">
         
         {/* --- HERO / メインタイトル --- */}
         <section className="text-center space-y-4 pt-4">

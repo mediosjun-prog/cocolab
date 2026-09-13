@@ -98,7 +98,7 @@ export default function KokoroguContent() {
       </section>
 
       {/* 履歴リストエリア */}
-      <div className="max-w-2xl mx-auto px-4 space-y-6">
+      <div className="max-w-6xl mx-auto px-4 space-y-6">
         
         {/* サマリーカード */}
         <div className="bg-gradient-to-br from-[#F2FBF4] to-[#E8F5E9] border border-[#D1E7D2] rounded-3xl p-6 sm:p-8 flex items-center justify-between shadow-xs">

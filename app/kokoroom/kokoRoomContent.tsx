@@ -49,7 +49,7 @@ export default function KokoRoomContent() {
 
   return (
     <main className="min-h-screen bg-[#FDFBF7] text-[#2C2C2C] px-4 py-8">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
 
         {/* ヘッダーセクション */}
         <section className="text-center space-y-3 pt-4">

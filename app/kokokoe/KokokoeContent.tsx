@@ -202,7 +202,7 @@ export default function KokokoeContent() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-6xl mx-auto space-y-6">
       {isPlaying && (
         <div className="fixed inset-0 z-50 bg-emerald-950/95 backdrop-blur-md flex flex-col items-center justify-center p-6 text-white text-center">
           <div className="absolute top-8 right-8 text-emerald-200 text-sm font-mono bg-emerald-900/60 px-4 py-2 rounded-full border border-emerald-700/50">

@@ -55,14 +55,14 @@ export default function IkoSetup({ onStartSession }: IkoSetupProps) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className="max-w-6xl mx-auto space-y-8">
       <section className="text-center space-y-4 pt-4 mb-6">
         <div>
           <span className="inline-block bg-[#D0F9C7] text-[#446246] text-xs font-semibold px-3 py-1 rounded-full">
             COCOIKU
           </span>
         </div>
-        <PageHeader title="ここいく（対人関係シミュレーション）" />
+        <PageHeader title="ここいく" />
         <p className="text-sm text-gray-600">
           安全な仮想世界の中で、心地よい距離感やコミュニケーションを対話を通じて学びましょう。
         </p>

@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import NewsList from '@/components/NewsList';
 
 export default function HomePageContent() {
   return (
     <main className="min-h-screen bg-slate-50 py-8 sm:py-12 px-4 sm:px-6 lg:px-8 space-y-16">
       
       {/* --- 1. HERO セクション --- */}
-      <section className="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-12 shadow-sm border border-slate-100 flex flex-col sm:flex-row items-center gap-8">
+      <section className="max-w-6xl mx-auto bg-white rounded-3xl p-6 sm:p-12 shadow-sm border border-slate-100 flex flex-col sm:flex-row items-center gap-8">
         <div className="flex-1 space-y-4 text-center sm:text-left">
           <span className="inline-block bg-[#D0F9C7] text-[#446246] text-xs font-semibold px-3 py-1 rounded-full">
             24時間いつでも寄り添うメンタルケア
@@ -192,7 +193,6 @@ export default function HomePageContent() {
           </Link>
         </div>
       </section>
-
       {/* --- 5. 新着・更新情報（お知らせ）セクション --- */}
       <section className="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
@@ -206,67 +206,8 @@ export default function HomePageContent() {
           </div>
         </div>
 
-        {/* お知らせリスト */}
-        <div className="divide-y divide-slate-100 text-sm">
-          <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-slate-400">2026.09.12</span>
-              <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここるーむ</span>
-            </div>
-            <Link href="/kokomie" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
-              ここみえを公開しました。
-            </Link>
-          </div>
-          <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-slate-400">2026.09.11</span>
-              <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここるーむ</span>
-            </div>
-            <Link href="/kokosuki" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
-              ここすきを公開しました。
-            </Link>
-          </div>
-            <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-slate-400">2026.09.11</span>
-              <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここるーむ</span>
-            </div>
-            <Link href="/kokokoe" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
-              こここえを公開しました。
-            </Link>
-          </div>     
-          <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-slate-400">2026.09.10</span>
-              <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここるーむ</span>
-            </div>
-            <Link href="/kokoniwa" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
-              ここにわ〜ここらぼガーデン〜を公開しました。
-            </Link>
-          </div>
-
-          <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-slate-400">2026.09.07</span>
-              <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここるーむ</span>
-            </div>
-            <Link href="/kokosure" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
-              ここすれ〜心のすれ違いクエスト〜を更新しました。
-            </Link>
-          </div>
-
-          <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-slate-400">2026.09.05</span>
-              <span className="text-xs bg-amber-100 text-amber-800 font-medium px-2 py-0.5 rounded">お知らせ</span>
-            </div>
-            <Link href="/about" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
-              メンタルケアプラットフォーム「ここらぼ」を正式オープンしました。
-            </Link>
-          </div>
-
-
-        </div>
+        {/* お知らせリストをパーツとして読み込む */}
+        <NewsList />
       </section>
 
       {/* --- 6. 愛着についての深掘りセクション --- */}

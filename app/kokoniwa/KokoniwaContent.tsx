@@ -47,7 +47,7 @@ export default function KokoniwaContent() {
     <main className="w-full pb-20">
       {/* ヘッダーセクション */}
       <section className="relative overflow-hidden from-[#E8F5E9] via-[#F1F8F2] to-[#FDFBF7] py-16 px-4 text-center">
-        <div className="max-w-4xl mx-auto space-y-4 relative z-10">
+        <div className="max-w-6xl mx-auto space-y-4 relative z-10">
           <span className="inline-block bg-[#D0F9C7] text-[#446246] text-xs font-semibold px-3 py-1 rounded-full shadow-xs">
             デジタル癒やし庭園
           </span>
@@ -59,7 +59,7 @@ export default function KokoniwaContent() {
       </section>
 
       {/* メインコンテンツエリア */}
-      <div className="max-w-4xl mx-auto px-4 space-y-8">
+      <div className="max-w-6xl mx-auto px-4 space-y-8">
         
         {/* お庭のビジュアルエリア */}
         <div className="bg-gradient-to-b from-[#F2FBF4] to-[#E8F5E9] border border-[#D1E7D2] rounded-3xl p-6 sm:p-8 text-center shadow-xs relative overflow-hidden">

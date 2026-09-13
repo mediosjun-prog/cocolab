@@ -103,7 +103,7 @@ export default function KokosukiContent() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-6xl mx-auto space-y-6">
       {/* タブ切り替え */}
       <div className="flex justify-center gap-2 mb-6">
         <button

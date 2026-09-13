@@ -28,7 +28,7 @@ export default function KokokakoContent() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-emerald-50/40 via-white to-emerald-50/30 py-8 px-4 sm:px-6">
-      <div className="max-w-4xl mx-auto space-y-6">
+      <div className="max-w-6xl mx-auto space-y-6">
         {/* ヘッダーセクション */}
         <section className="text-center space-y-3 pt-4">
           <div>

@@ -17,7 +17,7 @@ export default function IkoHistory({ onBackToSetup, onStartNew }: IkoHistoryProp
   }, []);
 
   return (
-    <div className="max-w-3xl mx-auto space-y-6">
+    <div className="max-w-6xl mx-auto space-y-6">
       <div className="bg-white/85 backdrop-blur-md p-6 rounded-3xl border border-emerald-100 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <span className="text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-full">

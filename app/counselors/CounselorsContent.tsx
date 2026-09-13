@@ -61,7 +61,7 @@ const COUNSELOR_TYPES = [
 export default function CounselorsContent() {
   return (
     <main className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* 統一ヘッダー */}
         <section className="text-center space-y-4 pt-4 mb-10">
           <div>

@@ -83,7 +83,7 @@ export default function IkoChat({ config, onBackToSetup }: IkoChatProps) {
   };
 
   return (
-    <div className="max-w-3xl mx-auto bg-white/90 backdrop-blur-md rounded-3xl shadow-sm border border-emerald-100 flex flex-col h-[80vh] overflow-hidden">
+    <div className="max-w-6xl mx-auto bg-white/90 backdrop-blur-md rounded-3xl shadow-sm border border-emerald-100 flex flex-col h-[80vh] overflow-hidden">
       {/* ヘッダー部分 */}
       <div className="p-4 sm:px-6 bg-emerald-50/60 border-b border-emerald-100 flex justify-between items-center">
         <div>

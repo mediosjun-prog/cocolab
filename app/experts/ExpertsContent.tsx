@@ -8,7 +8,7 @@ import PageHeader from '@/components/PageHeader';
 export default function ExpertsContent() {
   return (
     <main className="w-full p-4 md:p-8 bg-slate-50/50 min-h-screen">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <section className="text-center space-y-4 pt-4 mb-10">
           <div>
             <span className="inline-block bg-[#D0F9C7] text-[#446246] text-xs font-semibold px-3 py-1 rounded-full">
