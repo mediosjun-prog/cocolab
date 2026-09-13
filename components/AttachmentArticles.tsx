@@ -57,12 +57,6 @@ export default function AttachmentArticles() {
             愛着タイプに関する記事
           </h2>
         </div>
-        <Link
-          href="/articles/category/attachment"
-          className="text-sm font-bold text-blue-600 hover:text-blue-800 transition"
-        >
-          すべて見る →
-        </Link>
       </div>
 
       {/* 記事カードのグリッド配置 */}
