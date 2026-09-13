@@ -369,7 +369,7 @@ export default function DiagnosisContent() {
 
                 {currentQ.image && (
                   <div className="hidden md:flex w-full md:w-48 lg:w-52 flex-shrink-0 justify-center items-center">
-                    <div className="relative w-40 h-40 md:w-48 md:h-48">
+                    <div className="relative w-60 h-60 md:w-60 md:h-60">
                       <Image
                         src={currentQ.image}
                         alt={`質問 ${currentStep + 1} のイラスト`}
@@ -409,14 +409,14 @@ export default function DiagnosisContent() {
               <hr className="border-gray-100" />
 
               <div>
-                <p className="text-xs font-semibold text-gray-400 mb-4 tracking-wider uppercase">
-                  スコア分布
+                <p className="text-base font-semibold text-emerald-600 mb-4 tracking-wider uppercase">
+                  ☘️ スコア分布
                 </p>
 
                 <div className="space-y-3">
                   {result.scores.map((score, i) => (
                     <div key={i} className="flex items-center text-xs">
-                      <span className="w-20 font-medium text-gray-600">
+                      <span className="w-20 font-medium text-gray-500">
                         {score.label}
                       </span>
 
@@ -427,7 +427,7 @@ export default function DiagnosisContent() {
                         />
                       </div>
 
-                      <span className="w-8 text-right font-semibold text-gray-400">
+                      <span className="w-8 text-right font-semibold text-gray-500">
                         {score.value}%
                       </span>
                     </div>
@@ -438,11 +438,11 @@ export default function DiagnosisContent() {
               <hr className="border-gray-100" />
 
               <div>
-                <p className="text-xs font-semibold text-gray-400 mb-2 tracking-wider uppercase">
-                  強み
+                <p className="text-base font-semibold text-emerald-600 mb-2 tracking-wider uppercase">
+                  ☘️ 強み
                 </p>
 
-                <p className="text-sm font-bold text-gray-800">
+                <p className="text-sm font-bold text-gray-500">
                   {result.strengths}
                 </p>
               </div>
@@ -450,11 +450,11 @@ export default function DiagnosisContent() {
               <hr className="border-gray-100" />
 
               <div>
-                <p className="text-xs font-semibold text-gray-400 mb-2 tracking-wider uppercase">
-                  成長のヒント
+                <p className="text-base font-semibold text-emerald-600 mb-2 tracking-wider uppercase">
+                  ☘️ 成長のヒント
                 </p>
 
-                <p className="text-sm font-bold text-gray-800 leading-relaxed">
+                <p className="text-sm font-bold text-gray-500 leading-relaxed">
                   {result.hint}
                 </p>
               </div>
@@ -462,11 +462,11 @@ export default function DiagnosisContent() {
               <hr className="border-gray-100" />
 
               <div>
-                <p className="text-xs font-semibold text-gray-400 mb-2 tracking-wider uppercase">
-                  あなたへのメッセージ
+                <p className="text-base font-semibold text-emerald-600 mb-2 tracking-wider uppercase">
+                  ☘️ あなたへのメッセージ
                 </p>
 
-                <p className="text-sm font-bold text-gray-800 leading-relaxed">
+                <p className="text-sm font-bold text-gray-500 leading-relaxed">
                   {result.message}
                 </p>
               </div>
@@ -509,8 +509,8 @@ export default function DiagnosisContent() {
               <hr className="border-[#C4783E]/40" />
 
               <div>
-                <p className="text-xs font-semibold text-gray-400 mb-3 tracking-wider uppercase">
-                  おすすめ電子書籍
+                <p className="text-base font-semibold text-emerald-600 mb-3 tracking-wider uppercase">
+                  ☘️ おすすめ電子書籍
                 </p>
 
                 <a

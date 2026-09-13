@@ -43,6 +43,15 @@ export default function KokoniwaContent() {
   // 完了したケアの数に応じて庭の成長度（ステージ）を決定
   const completedCount = Object.values(checkedItems).filter(Boolean).length;
 
+  // 水やりやチェック数に応じた植物のアイコンを判定
+  const getPlantEmoji = () => {
+    if (waterCount >= 15 || completedCount === 3) return '🌸'; // 満開・最高段階
+    if (waterCount >= 10) return '🌲'; // 立派な大木
+    if (waterCount >= 6) return '🌳';  // 木に成長
+    if (waterCount >= 3) return '🌿';  // 若葉
+    return '🌱';                       // 芽
+  };
+
   return (
     <main className="w-full pb-20">
       {/* ヘッダーセクション */}
@@ -67,11 +76,11 @@ export default function KokoniwaContent() {
             🌱 庭の成長レベル: ステージ {completedCount + 1}
           </div>
 
-        {/* 庭のキャラクター・植物のシンボルイラスト（絵文字・CSS表現） */}
+        {/* 庭のキャラクター・植物のシンボルイラスト */}
         <div className="py-10 flex flex-col items-center justify-center space-y-4">
           <div className="relative">
             <div className="w-28 h-28 sm:w-36 sm:h-36 bg-white rounded-full flex items-center justify-center text-6xl sm:text-7xl shadow-md border-4 border-[#C1E1C2] animate-bounce-slow">
-              {completedCount === 3 ? '🌳✨' : completedCount >= 1 ? '🌿' : '🌱'}
+              {getPlantEmoji()}
             </div>
             {/* 水やりエフェクトなどの装飾 */}
             <span className="absolute -bottom-2 -right-2 bg-emerald-600 text-white text-xs px-2.5 py-1 rounded-full shadow-xs">
