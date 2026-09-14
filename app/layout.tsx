@@ -11,6 +11,10 @@ title: {
     template: '%s | ここらぼ',
   },
   description: 'AIカウンセラーと専門家による、愛着と心の回復をサポートする心理ケアプラットフォーム',
+  // 👇 ここにGoogle Search Consoleの確認コードを追加します
+  verification: {
+    google: 'aHCg2ELtZA4th8oTQhhrnZXSMJgG1m5-mZ5pibXopBI',
+  },
 };
 
 export default function RootLayout({
