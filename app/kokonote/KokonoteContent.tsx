@@ -78,6 +78,15 @@ const ITEMS: ContentItem[] = [
     href: '/iko',
     badge: 'スキルアップ',
   },
+
+  {
+    title: '👥 ここどう',
+    nameEn: 'kokodou',
+    category: '対人シミュレーション',
+    description: '「あなたの行動で、相手はどう受け止め、どう動くのか？」愛着スタイルの視点から二人の相互作用を紐解きます。',
+    href: '/kokodou',
+    badge: 'スキルアップ',
+  },
   {
     title: '🛏️ ここるーむ',
     nameEn: 'KOKOROOM',
