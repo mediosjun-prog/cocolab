@@ -4,7 +4,7 @@ import Image from 'next/image';
 export default function FeatureContent() {
   return (
     <main className="w-full p-4 md:p-8 bg-slate-50/50 min-h-screen">
-      <div className="max-w-4xl mx-auto space-y-8">
+      <div className="max-w-6xl mx-auto space-y-8">
         
         {/* 戻るナビゲーション ＆ タグ */}
         <div className="flex items-center justify-between">

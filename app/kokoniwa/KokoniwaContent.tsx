@@ -2,27 +2,63 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 
 export default function KokoniwaContent() {
-  // 今日のケア記録の状態
   const [checkedItems, setCheckedItems] = useState({
     walk: false,
     sleep: false,
     relax: false,
   });
 
-  const [waterCount, setWaterCount] = useState(2); // お世話・水やりカウンター
-  const [message, setMessage] = useState('「今日もよくここまで歩きましたね。お疲れさまです。」');
+  const [waterCount, setWaterCount] = useState(2); 
+
+  // 1. 共通の成長ステージ（0〜5の6段階）を計算する関数
+  const getPlantStage = () => {
+    const completedCount = Object.values(checkedItems).filter(Boolean).length;
+    if (waterCount >= 15 || completedCount === 3) return 5; // 満開
+    if (waterCount >= 12) return 4; // 蕾
+    if (waterCount >= 8)  return 3; // ツル
+    if (waterCount >= 5)  return 2; // 双葉
+    if (waterCount >= 3)  return 1; // 芽
+    return 0;                       // 種
+  };
+
+  const currentStage = getPlantStage();
+
+  // 2. ステージに対応する画像パスのリスト
+  const plantImages = [
+    '/images/asagao/asagao-1.png', // 種
+    '/images/asagao/asagao-2.png', // 芽
+    '/images/asagao/asagao-3.png', // 双葉
+    '/images/asagao/asagao-4.png', // ツル
+    '/images/asagao/asagao-5.png', // 蕾
+    '/images/asagao/asagao-6.png', // 満開
+  ];
+
+  // 3. ステージに対応するメッセージのリスト
+  const stageMessages = [
+    '「小さな種をまいたよ。ここからどんな芽が出てくるか楽しみですね。」',
+    '「かわいい小さな芽が出てきたね！大切に育てていこう。」',
+    '「双葉がしっかり開いて、葉っぱが生き生きしてきたね！」',
+    '「ツルが支柱に巻きついて、ぐんぐん大きくなってきたね。」',
+    '「小さなつぼみが見えてきたよ！咲くのが待ち遠しいね。」',
+    '「わぁ、きれいな朝顔の花が咲いたよ！毎日のケアの成果だね✨」',
+  ];
+
+  // 4. 初期メッセージまたは水やり時のメッセージを管理
+  const [message, setMessage] = useState(stageMessages[currentStage]);
 
   // チェックボックス変更時の処理
   const handleCheck = (key: 'walk' | 'sleep' | 'relax') => {
     const updated = { ...checkedItems, [key]: !checkedItems[key] };
     setCheckedItems(updated);
 
-    // すべて完了したときのメッセージ
-    if (updated.walk && updated.sleep && updated.relax) {
-      setMessage('✨ 心の栄養が満タンになりました！お庭の植物たちがとても嬉しそうに輝いています。');
+    // チェック状態が変わったときも現在のステージに合わせてメッセージを更新
+    const newCompletedCount = Object.values(updated).filter(Boolean).length;
+    if (newCompletedCount === 3) {
+      setMessage('✨ 心の栄養が満タンになりました！お庭の朝顔たちがとても嬉しそうに輝いています。');
     } else {
       setMessage('「ご自身のペースで大丈夫ですよ。ゆっくり心を整えていきましょう。」');
     }
@@ -30,27 +66,23 @@ export default function KokoniwaContent() {
 
   // 水やり（お世話）ボタン
   const handleWatering = () => {
-    setWaterCount((prev) => prev + 1);
-    const comments = [
-      '「お水をありがとう！なんだか葉っぱが生き生きしてきたよ。」',
-      '「深呼吸をひとつ。あなたのペースで進みましょう。」',
-      '「今日もよく頑張りましたね。自分をたくさん褒めてあげてください。」',
-      '「ここにわの木が少し大きくなった気がする…！」',
-    ];
-    setMessage(comments[Math.floor(Math.random() * comments.length)]);
+    setWaterCount((prev) => {
+      const nextCount = prev + 1;
+      // 水やり後に進む新しいステージに合わせてメッセージを即座に連動させる
+      const completedCount = Object.values(checkedItems).filter(Boolean).length;
+      let nextStage = 0;
+      if (nextCount >= 15 || completedCount === 3) nextStage = 5;
+      else if (nextCount >= 12) nextStage = 4;
+      else if (nextCount >= 8)  nextStage = 3;
+      else if (nextCount >= 5)  nextStage = 2;
+      else if (nextCount >= 3)  nextStage = 1;
+
+      setMessage(stageMessages[nextStage]);
+      return nextCount;
+    });
   };
 
-  // 完了したケアの数に応じて庭の成長度（ステージ）を決定
   const completedCount = Object.values(checkedItems).filter(Boolean).length;
-
-  // 水やりやチェック数に応じた植物のアイコンを判定
-  const getPlantEmoji = () => {
-    if (waterCount >= 15 || completedCount === 3) return '🌸'; // 満開・最高段階
-    if (waterCount >= 10) return '🌲'; // 立派な大木
-    if (waterCount >= 6) return '🌳';  // 木に成長
-    if (waterCount >= 3) return '🌿';  // 若葉
-    return '🌱';                       // 芽
-  };
 
   return (
     <main className="w-full pb-20">
@@ -73,33 +105,40 @@ export default function KokoniwaContent() {
         {/* お庭のビジュアルエリア */}
         <div className="bg-gradient-to-b from-[#F2FBF4] to-[#E8F5E9] border border-[#D1E7D2] rounded-3xl p-6 sm:p-8 text-center shadow-xs relative overflow-hidden">
           <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-xs px-3 py-1 rounded-full text-xs font-bold text-[#446246] border border-[#C1E1C2]">
-            🌱 庭の成長レベル: ステージ {completedCount + 1}
+            🌱 庭の成長レベル: ステージ {currentStage + 1}
           </div>
 
-        {/* 庭のキャラクター・植物のシンボルイラスト */}
-        <div className="py-10 flex flex-col items-center justify-center space-y-4">
-          <div className="relative">
-            <div className="w-28 h-28 sm:w-36 sm:h-36 bg-white rounded-full flex items-center justify-center text-6xl sm:text-7xl shadow-md border-4 border-[#C1E1C2] animate-bounce-slow">
-              {getPlantEmoji()}
+          {/* 庭のキャラクター・植物のシンボルイラスト */}
+          <div className="py-10 flex flex-col items-center justify-center space-y-4">
+            <div className="relative">
+              <div className="w-28 h-28 sm:w-36 sm:h-36 bg-white rounded-full flex items-center justify-center shadow-md border-4 border-[#C1E1C2] overflow-hidden animate-bounce-slow">
+                <Image
+                  src={plantImages[currentStage]}
+                  alt="お庭の朝顔"
+                  width={112}
+                  height={112}
+                  className="object-contain w-20 h-20 sm:w-24 sm:h-24 transition-all duration-500"
+                  priority
+                />
+              </div>
+              {/* 水やりエフェクトなどの装飾 */}
+              <span className="absolute -bottom-2 -right-2 bg-emerald-600 text-white text-xs px-2.5 py-1 rounded-full shadow-xs">
+                水やり {waterCount}回
+              </span>
             </div>
-            {/* 水やりエフェクトなどの装飾 */}
-            <span className="absolute -bottom-2 -right-2 bg-emerald-600 text-white text-xs px-2.5 py-1 rounded-full shadow-xs">
-              水やり {waterCount}回
-            </span>
-          </div>
 
-          {/* 相棒からのメッセージ吹出し */}
-          <div className="bg-white/90 backdrop-blur-xs border border-[#D1E7D2] rounded-2xl p-4 max-w-md shadow-xs">
-            <p className="text-xs sm:text-sm text-[#374151] font-medium leading-relaxed">
-              {message}
-            </p>
+            {/* 相棒からのメッセージ吹出し */}
+            <div className="bg-white/90 backdrop-blur-xs border border-[#D1E7D2] rounded-2xl p-4 max-w-md shadow-xs">
+              <p className="text-xs sm:text-sm text-[#374151] font-medium leading-relaxed">
+                {message}
+              </p>
+            </div>
           </div>
-        </div>
 
           {/* 水やりボタン */}
           <button
             onClick={handleWatering}
-            className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 !text-white text-sm font-bold rounded-full shadow-sm transition-all transform active:scale-95"
+            className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 !text-white text-sm font-bold rounded-full shadow-sm transition-all transform active:scale-95 cursor-pointer"
           >
             💧 ここにわに「お水（労い）」をあげる
           </button>
