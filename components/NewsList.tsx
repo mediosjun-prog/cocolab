@@ -10,7 +10,7 @@ export default function NewsList() {
         <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
           <div className="flex items-center gap-3">
             <span className="text-xs text-slate-400">2026.09.15</span>
-            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここるーむ</span>
+            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここのーと</span>
           </div>
           <Link href="/kokodou" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
             ここどうを公開しました。
@@ -20,7 +20,7 @@ export default function NewsList() {
         <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
           <div className="flex items-center gap-3">
             <span className="text-xs text-slate-400">2026.09.14</span>
-            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここるーむ</span>
+            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここのーと</span>
           </div>
           <Link href="/kokoniwa" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
             ここにわを更新しました。
@@ -30,7 +30,7 @@ export default function NewsList() {
         <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
           <div className="flex items-center gap-3">
             <span className="text-xs text-slate-400">2026.09.13</span>
-            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここるーむ</span>
+            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここのーと</span>
           </div>
           <Link href="/iko" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
             ここいくを更新しました。
@@ -40,7 +40,7 @@ export default function NewsList() {
         <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
           <div className="flex items-center gap-3">
             <span className="text-xs text-slate-400">2026.09.12</span>
-            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここるーむ</span>
+            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここのーと</span>
           </div>
           <Link href="/kokomie" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
             ここみえを公開しました。
@@ -50,7 +50,7 @@ export default function NewsList() {
         <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
           <div className="flex items-center gap-3">
             <span className="text-xs text-slate-400">2026.09.11</span>
-            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここるーむ</span>
+            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここのーと</span>
           </div>
           <Link href="/kokosuki" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
             ここすきを公開しました。
@@ -60,7 +60,7 @@ export default function NewsList() {
         <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
           <div className="flex items-center gap-3">
             <span className="text-xs text-slate-400">2026.09.11</span>
-            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここるーむ</span>
+            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここのーと</span>
           </div>
           <Link href="/kokokoe" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
             こここえを公開しました。
@@ -70,7 +70,7 @@ export default function NewsList() {
         <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
           <div className="flex items-center gap-3">
             <span className="text-xs text-slate-400">2026.09.10</span>
-            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここるーむ</span>
+            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここのーと</span>
           </div>
           <Link href="/kokoniwa" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
             ここにわ〜ここらぼガーデン〜を公開しました。
@@ -80,7 +80,7 @@ export default function NewsList() {
         <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
           <div className="flex items-center gap-3">
             <span className="text-xs text-slate-400">2026.09.07</span>
-            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここるーむ</span>
+            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここのーと</span>
           </div>
           <Link href="/kokosure" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
             ここすれ〜心のすれ違いクエスト〜を更新しました。
