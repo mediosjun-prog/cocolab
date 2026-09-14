@@ -3,6 +3,7 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import KokonaviBot from '@/components/KokonaviBot';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
 title: {
@@ -32,6 +33,8 @@ export default function RootLayout({
         <Footer />
         {/* 🌟 ⑤ サイト全体に常駐する「ここなび」チャットボット */}
         <KokonaviBot />
+        {/* 📈 Vercel Web Analytics */}
+        <Analytics />
       </body>
     </html>
   );
