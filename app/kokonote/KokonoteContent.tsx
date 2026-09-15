@@ -53,6 +53,14 @@ const ITEMS: ContentItem[] = [
     href: '/kokomie',
     badge: 'あなたの深層心理',
   },
+      {
+    title: '🖼️ ここあーと',
+    nameEn: 'ART',
+    category: '心理テスト',
+    description: 'あなたが心の中で求めている「親子関係・人との距離感」に一番近いものはどれ?',
+    href: '/kokoart',
+    badge: 'あなたの深層心理',
+  },
   {
     title: '❤️ ここすき',
     nameEn: 'POSITIVE REFRAME',
