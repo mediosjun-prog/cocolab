@@ -45,6 +45,14 @@ const ITEMS: ContentItem[] = [
     href: '/kokosure',
     badge: '人気No.1',
   },
+  {
+    title: '📐 ここきょり',
+    nameEn: 'diagnosis',
+    category: '心理テスト',
+    description: '「なぜか人と距離をとってしまう」「人間関係で疲れやすい」その背景にある心や特性の仕組みを優しく紐解く',
+    href: '/kokodiagnosis',
+    badge: 'セルフ理解ツール',
+  },
     {
     title: '🔍 ここみえ',
     nameEn: 'SUBCONSCIOUS MIND',

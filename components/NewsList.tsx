@@ -6,6 +6,17 @@ export default function NewsList() {
     <div className="bg-white p-4 rounded-2xl max-h-[250px] overflow-y-auto">
       {/* お知らせリスト */}
       <div className="divide-y divide-slate-100 text-sm">
+
+      <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-slate-400">2026.09.17</span>
+            <span className="text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">ここのーと</span>
+          </div>
+          <Link href="/kokodiagnosis" className="text-slate-700 hover:text-[#5d8860] font-medium flex-1">
+            ここきょりを公開しました。
+          </Link>
+        </div>
+
         <div className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-slate-50/50 transition-colors px-2 rounded-lg">
           <div className="flex items-center gap-3">
             <span className="text-xs text-slate-400">2026.09.16</span>
