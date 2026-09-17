@@ -72,7 +72,13 @@ const GUIDES: GuideItem[] = [
     keywords: ['いく', '歩み', '前進', 'ステップ', '目標', 'ここいく'],
     title: 'ここいく',
     description: '自分のペースで少しずつ未来へ歩みを進めていくためのサポートスペースです。',
-    url: '/kokoiku',
+    url: '/iko',
+  },
+  {
+    keywords: ['とーく', 'トーク', '雑談', 'おしゃべり', '会話', 'こことーく'],
+    title: 'こことーく',
+    description: '対話するAIキャラクターの設定を行いましょう',
+    url: '/kokotalk',
   },
     {
     keywords: ['つながり', 'アクション', '本音', '相互作用', '感情', 'ここどう'],
@@ -264,12 +270,13 @@ export default function KokonaviBot() {
           className="group relative flex items-center gap-3 bg-white hover:bg-emerald-50 border border-emerald-200 text-slate-700 pl-4 pr-5 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
         >
           {/* 動物アイコン（可愛いウサギや鳥のイメージ・絵文字や画像に差し替え可能） */}
-          <div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center shadow-xs group-hover:rotate-12 transition-transform relative">
+<div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center shadow-xs group-hover:rotate-12 transition-transform relative">
             <Image
-              src="/images/kokonavi-icons.png" // 💡 ご用意された画像のパスに合わせて変更してください
+              src="/images/kokonavi-icons.png"
               alt="ここなびアイコン"
-              fill
-              className="object-cover"
+              width={40}
+              height={40}
+              className="object-cover w-full h-full"
             />
           </div>
           <div className="text-left">

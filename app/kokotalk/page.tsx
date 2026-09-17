@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   description: '色んなタイプのAIと気軽におしゃべりしてね',
 };
 
+// 型定義をここに追加してエクスポートする
+export interface KokotalkConfig {
+  gender: string;
+  age: string;
+  occupation: string;
+  personality: string;
+  styles: string[];
+  avatar: string;
+  voiceId: number;
+}
+
 export default function KokotalkPage() {
   return <KokotalkContent />;
 }
