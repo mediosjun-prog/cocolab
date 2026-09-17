@@ -88,10 +88,19 @@ const ITEMS: ContentItem[] = [
 
   {
     title: '👤 ここいく',
-    nameEn: 'COCOIKU',
+    nameEn: 'kokoIKU',
     category: '対話トレーニング',
     description: '安全な仮想世界の中で、心地よい距離感やコミュニケーションを対話を通じて学びましょう。',
     href: '/iko',
+    badge: 'スキルアップ',
+  },
+
+  {
+    title: '👦 こことーく',
+    nameEn: 'kokotalk',
+    category: '対話トレーニング',
+    description: '色んなタイプのAIと気軽におしゃべりできます。',
+    href: '/kokotalk',
     badge: 'スキルアップ',
   },
 
