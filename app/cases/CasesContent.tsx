@@ -812,11 +812,7 @@ export default function CasesContent() {
   return (
     <main className="w-full p-4 md:p-8">
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <PageHeader 
-        title="愛着パターン事例" 
-        description="人間関係や恋愛において繰り返される心理的メカニズムと、その向き合い方のヒントをまとめています。" 
-      />
-      
+      <PageHeader title="愛着パターン事例"/>
       <div className="grid gap-6 mt-8">
         {CASES_DATA.map((item, index) => (
           <div key={item.id} className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
