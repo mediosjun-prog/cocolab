@@ -29,7 +29,7 @@ export default function HomePageContent() {
         </div>
         <div className="relative w-full sm:w-1/2 h-60 sm:h-72 rounded-2xl overflow-hidden bg-slate-100">
           <Image
-            src="/images/step2-ai.png"
+            src="/images/step-ai.png"
             alt="リラックスした空間でスマホを使うイメージ"
             fill
             className="object-cover"
@@ -48,7 +48,7 @@ export default function HomePageContent() {
           {/* イメージ画像挿入エリア */}
           <div className="relative w-full h-90 md:h-[650px] rounded-2xl overflow-hidden my-4">
             <Image
-              src="/images/home-problems4.png"
+              src="/images/home-problems5.png"
               alt="心の悩みを持つ人のイメージイラスト"
               fill
               className="object-cover"
@@ -217,14 +217,14 @@ export default function HomePageContent() {
             ご自身の愛着についてさらに深く知る
           </h2>
           <p className="text-slate-600 mt-4 leading-relaxed text-sm sm:text-base">
-            診断結果をもとに、あなたの愛着タイプに合わせた具体的な向き合い方や、心を軽くするためのヒントを記事でご紹介しています。
+            愛着タイプの基本的な内容、傾向をご紹介しています。
           </p>
           
           <Link 
-            href="/articles/category/attachment"
+            href="/attachment"
             className="inline-block mt-8 px-8 py-4 bg-[#5A7A5C] !text-white font-bold rounded-xl hover:bg-[#4A5A4B] transition shadow-md text-sm sm:text-base"
           >
-            愛着タイプに関する記事一覧を見る →
+            愛着タイプについて詳しく知る
           </Link>
         </div>
       </section>

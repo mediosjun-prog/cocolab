@@ -57,7 +57,7 @@ export default function AboutContent() {
           {/* イメージビジュアル */}
           <div className="relative w-full h-90 md:h-[450px] rounded-2xl overflow-hidden bg-slate-100 my-4">
             <Image
-              src="/images/about-vision.png"
+              src="/images/about-vision2.png"
               alt="自分を知ること・心のセルフケアのイメージ"
               fill
               className="object-cover"
