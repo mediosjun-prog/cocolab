@@ -18,6 +18,9 @@ export default function Footer() {
           <Link href="/about-us" className="hover:text-[#E4FFA8] transition !text-white">
             運営組織
           </Link>
+          <Link href="/faq" className="hover:text-[#E4FFA8] transition !text-white">
+            FAQ
+          </Link>
           <Link href="/privacy" className="hover:text-[#E4FFA8] transition !text-white">
             プライバシーポリシー
           </Link>
