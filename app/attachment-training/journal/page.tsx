@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowLeft, Calendar, Trash2, BookOpen, Sparkles, AlertCircle } from "lucide-react";
+import { ArrowLeft, Calendar, Trash2, BookOpen, Sparkles, Loader2 } from "lucide-react";
 import PageHeader from '@/components/PageHeader';
 
 interface JournalEntry {
@@ -16,7 +16,11 @@ interface JournalEntry {
 export default function JournalListPage() {
   const [entries, setEntries] = useState<JournalEntry[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [dataUpdated, setDataUpdated] = useState(false); // ← 先にステートを定義
+  const [dataUpdated, setDataUpdated] = useState(false);
+
+  // 追加: 各日誌ごとのAIアドバイス状態とローディング状態
+  const [advices, setAdvices] = useState<{ [key: number]: string }>({});
+  const [loadingId, setLoadingId] = useState<number | null>(null);
 
   // マウント時、またはデータ更新時に localStorage からデータを取得
   useEffect(() => {
@@ -56,6 +60,34 @@ export default function JournalListPage() {
     }
   };
 
+  // 追加: AIカウンセリングを呼び出す関数
+  const handleGetCounseling = async (entry: JournalEntry) => {
+    setLoadingId(entry.id);
+    try {
+      const res = await fetch("/api/ai-counseling", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          step: entry.step,
+          title: entry.title,
+          summary: entry.summary,
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        setAdvices((prev) => ({ ...prev, [entry.id]: data.advice }));
+      } else {
+        alert(data.error || "アドバイスの取得に失敗しました。");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("通信エラーが発生しました。");
+    } finally {
+      setLoadingId(null);
+    }
+  };
+
   return (
     <main>
       <div className="py-12 px-4 sm:px-6 lg:px-8">
@@ -79,7 +111,7 @@ export default function JournalListPage() {
             </span>
             <PageHeader title="ワーク日誌一覧" />
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
-              これまでに取り組んだ各ステップのワーク記録を振り返ることができます。ご自身の心の軌跡を眺めてみましょう。
+              これまでに取り組んだ各ステップのワーク記録を振り返ることができます。AIカウンセラーからの温かいフィードバックも受け取れます。
             </p>
           </section>
 
@@ -123,41 +155,77 @@ export default function JournalListPage() {
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 gap-6">
                 {entries.map((entry) => (
                   <div
                     key={entry.id}
-                    className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 transition-all hover:shadow-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+                    className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 transition-all hover:shadow-md space-y-4"
                   >
-                    <div className="space-y-2 flex-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-[#299a0b]">
-                          {entry.step}
-                        </span>
-                        <span className="inline-flex items-center text-xs text-slate-500">
-                          <Calendar className="w-3.5 h-3.5 mr-1 text-slate-400" />
-                          {entry.date}
-                        </span>
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                      <div className="space-y-2 flex-1">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-[#299a0b]">
+                            {entry.step}
+                          </span>
+                          <span className="inline-flex items-center text-xs text-slate-500">
+                            <Calendar className="w-3.5 h-3.5 mr-1 text-slate-400" />
+                            {entry.date}
+                          </span>
+                        </div>
+                        
+                        <h3 className="text-base font-bold text-slate-900">
+                          {entry.title}
+                        </h3>
+                        
+                        <p className="text-xs sm:text-sm text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100 leading-relaxed">
+                          {entry.summary}
+                        </p>
                       </div>
-                      
-                      <h3 className="text-base font-bold text-slate-900">
-                        {entry.title}
-                      </h3>
-                      
-                      <p className="text-xs sm:text-sm text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100 leading-relaxed">
-                        {entry.summary}
-                      </p>
+
+                      <div className="flex sm:flex-col items-end gap-2 self-end sm:self-center">
+                        <button
+                          onClick={() => handleDelete(entry.id)}
+                          className="p-2.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-colors"
+                          title="この記録を削除"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
                     </div>
 
-                    <div className="flex sm:flex-col items-end gap-2 self-end sm:self-center">
-                      <button
-                        onClick={() => handleDelete(entry.id)}
-                        className="p-2.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-colors"
-                        title="この記録を削除"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
+                    {/* 追加: AIカウンセリング実行ボタン ＆ 結果表示エリア */}
+                    <div className="pt-4 border-t border-slate-100">
+                      {!advices[entry.id] ? (
+                        <button
+                          onClick={() => handleGetCounseling(entry)}
+                          disabled={loadingId === entry.id}
+                          className="inline-flex items-center text-xs font-semibold px-4 py-2.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 rounded-xl transition-colors disabled:opacity-50"
+                        >
+                          {loadingId === entry.id ? (
+                            <>
+                              <Loader2 className="w-3.5 h-3.5 mr-1.5 animate-spin" />
+                              AIがカウンセリング中...
+                            </>
+                          ) : (
+                            <>
+                              <Sparkles className="w-3.5 h-3.5 mr-1.5 text-indigo-600" />
+                              このワークについてAIにカウンセリングしてもらう
+                            </>
+                          )}
+                        </button>
+                      ) : (
+                        <div className="bg-indigo-50/60 border border-indigo-100 rounded-2xl p-5 space-y-2 text-xs sm:text-sm text-slate-700">
+                          <div className="flex items-center font-bold text-indigo-900">
+                            <Sparkles className="w-4 h-4 mr-1.5 text-indigo-600" />
+                            AIカウンセラーからのフィードバック
+                          </div>
+                          <p className="leading-relaxed whitespace-pre-wrap pt-1">
+                            {advices[entry.id]}
+                          </p>
+                        </div>
+                      )}
                     </div>
+
                   </div>
                 ))}
               </div>
