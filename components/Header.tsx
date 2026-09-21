@@ -257,10 +257,10 @@ export default function Header() {
             )}
           </div>
           <Link
-            href="/contact"
+            href="/attachment-training"
             className="text-sm font-medium text-slate-600 hover:text-[#5d8860] transition-colors"
           >
-            お問い合わせ
+            実践
           </Link>
         </nav>
 
@@ -492,11 +492,11 @@ export default function Header() {
           </div>
 
           <Link
-            href="/contact"
+            href="/attachment-training"
             onClick={() => setIsOpen(false)}
             className="block py-2.5 px-3 rounded-xl text-base font-medium text-slate-700 hover:bg-[#D0F9C7]/30 hover:text-[#446246] transition-colors"
           >
-            お問い合わせ
+            実践
           </Link>
         </div>
       )}
