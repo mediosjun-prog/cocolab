@@ -1,49 +1,159 @@
 import { NextResponse } from 'next/server';
 import { GoogleGenAI } from '@google/genai';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const apiKey = process.env.GEMINI_API_KEY;
+const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
+
+const MAX_INPUT_LENGTH = 2000;
+const MAX_BODY_SIZE = 20 * 1024;
 
 export async function POST(req: Request) {
   try {
-    const { attachmentIssues, parentDynamic, currentChallenge } = await req.json();
+    if (!ai) {
+      return NextResponse.json(
+        { message: '現在、AI機能を利用できません。時間を置いて再度お試しください。' },
+        { status: 503 }
+      );
+    }
+
+    // JSON形式のリクエストのみ受け付ける
+    const contentType = req.headers.get('content-type') || '';
+    if (!contentType.includes('application/json')) {
+      return NextResponse.json(
+        { message: 'リクエストの形式が正しくありません。' },
+        { status: 415 }
+      );
+    }
+
+    // Content-Length が明示されている場合のサイズ確認
+    const contentLength = Number(req.headers.get('content-length') || 0);
+    if (contentLength > MAX_BODY_SIZE) {
+      return NextResponse.json(
+        { message: '入力内容が大きすぎます。文章を短くしてお試しください。' },
+        { status: 413 }
+      );
+    }
+
+    const body: unknown = await req.json();
+
+    if (!body || typeof body !== 'object' || Array.isArray(body)) {
+      return NextResponse.json(
+        { message: '入力内容が正しくありません。' },
+        { status: 400 }
+      );
+    }
+
+    const {
+      attachmentIssues,
+      parentDynamic,
+      currentChallenge,
+    } = body as {
+      attachmentIssues?: unknown;
+      parentDynamic?: unknown;
+      currentChallenge?: unknown;
+    };
+
+    const fields = [
+      { name: 'attachmentIssues', value: attachmentIssues },
+      { name: 'parentDynamic', value: parentDynamic },
+      { name: 'currentChallenge', value: currentChallenge },
+    ];
+
+    for (const field of fields) {
+      if (
+        field.value !== undefined &&
+        (typeof field.value !== 'string' ||
+          field.value.length > MAX_INPUT_LENGTH)
+      ) {
+        return NextResponse.json(
+          { message: '入力内容が長すぎるか、形式が正しくありません。' },
+          { status: 400 }
+        );
+      }
+    }
+
+    const attachmentText =
+      typeof attachmentIssues === 'string' && attachmentIssues.trim()
+        ? attachmentIssues.trim()
+        : '未選択';
+
+    const parentText =
+      typeof parentDynamic === 'string' && parentDynamic.trim()
+        ? parentDynamic.trim()
+        : '未記入';
+
+    const challengeText =
+      typeof currentChallenge === 'string' && currentChallenge.trim()
+        ? currentChallenge.trim()
+        : '未記入';
 
     const prompt = `
-あなたは優れた臨床心理士・トラウマ専門のAIカウンセラーです。
-ユーザーが抱える愛着障害の傾向や親子関係のトラウマを癒やし、内なる安全基地を築くためのサポート（ここむすびプログラム）を行ってください。
+あなたは、心の悩みを抱える人に温かく寄り添うAIサポーターです。
+愛着や親子関係について、決めつけず、本人の気持ちとペースを尊重した支援を行ってください。
+あなたは医療専門家本人ではありません。診断を断定せず、必要に応じて専門家への相談も勧めてください。
 
 【ユーザーの入力情報】
-- 愛着のパターン・傾向: ${attachmentIssues || '未選択'}
-- 子ども時代の親との関係・環境: ${parentDynamic || '未記入'}
-- 現在の対人関係や生きづらさの悩み: ${currentChallenge || '未記入'}
+- 愛着のパターン・傾向: ${attachmentText}
+- 子ども時代の親との関係・環境: ${parentText}
+- 現在の対人関係や生きづらさの悩み: ${challengeText}
 
-以下の3つの観点から、受容と温かさに満ちたトーンで、かつ心理学的に実践的なアドバイスをJSON形式で出力してください。
+以下の3つの観点から、受容と温かさに満ちた、心理学的に実践しやすいアドバイスをJSON形式で出力してください。
 
-1. attachmentAnalysis: 愛着スタイルの見立てと、当時そのように適応するしかなかったことへの深い受容・労い。
-2. safeBaseWork: 心の中に「内なる安全基地（セルフ・ケア）」を育むための具体的で優しいワーク。
-3. boundaryGuide: 今の人間関係において、自分を守るための境界線（バウンダリー）の引き方や考え方のヒント。
+1. attachmentAnalysis: 愛着の傾向について断定を避けた説明と、これまでの経験への受容。
+2. safeBaseWork: 無理なく試せるセルフケアのワーク。
+3. boundaryGuide: 人間関係で自分を守る境界線の引き方。
 
-※出力は必ず以下のJSONフォーマットのみ（Markdownのバッククォート等を含めない純粋なJSON）で行ってください。
-
+出力は次の3つの文字列プロパティを持つJSONオブジェクトだけにしてください。
 {
-  "attachmentAnalysis": "ここに愛着スタイルの分析と受容の文章",
-  "safeBaseWork": "ここに安全基地を育むワークの文章",
-  "boundaryGuide": "ここに境界線のヒントの文章"
+  "attachmentAnalysis": "文章",
+  "safeBaseWork": "文章",
+  "boundaryGuide": "文章"
 }
-    `;
+`;
 
     const response = await ai.models.generateContent({
       model: 'gemini-3.6-flash',
       contents: prompt,
     });
 
-    const text = response.text || '';
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    const jsonString = jsonMatch ? jsonMatch[0] : text;
-    const data = JSON.parse(jsonString);
+    const text = response.text?.trim() || '';
 
-    return NextResponse.json(data);
-  } catch (error: any) {
-    console.error('Kokomusubi API Error:', error);
+    // JSON部分を取り出して解析する
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) {
+      return NextResponse.json(
+        { message: 'AIの回答を正しく処理できませんでした。もう一度お試しください。' },
+        { status: 502 }
+      );
+    }
+
+    const data: unknown = JSON.parse(jsonMatch[0]);
+
+    if (
+      !data ||
+      typeof data !== 'object' ||
+      !('attachmentAnalysis' in data) ||
+      !('safeBaseWork' in data) ||
+      !('boundaryGuide' in data) ||
+      typeof data.attachmentAnalysis !== 'string' ||
+      typeof data.safeBaseWork !== 'string' ||
+      typeof data.boundaryGuide !== 'string'
+    ) {
+      return NextResponse.json(
+        { message: 'AIの回答形式が正しくありません。もう一度お試しください。' },
+        { status: 502 }
+      );
+    }
+
+    return NextResponse.json({
+      attachmentAnalysis: data.attachmentAnalysis,
+      safeBaseWork: data.safeBaseWork,
+      boundaryGuide: data.boundaryGuide,
+    });
+  } catch {
+    // 利用者の入力内容や詳細なエラーをレスポンスに含めない
+    console.error('Kokomusubi API request failed.');
+
     return NextResponse.json(
       { message: 'AIの処理中にエラーが発生しました。時間を置いて再度お試しください。' },
       { status: 500 }
